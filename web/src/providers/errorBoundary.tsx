@@ -1,6 +1,6 @@
 // Credit: https://github.com/overextended/ox_lib/blob/master/web/src/providers/errorBoundary.tsx
-import { fetchNui } from '@/utils/fetchNui';
-import { Component, ReactNode, ErrorInfo } from 'react';
+import { fetchNui } from '../utils/fetchNui';
+import { Component, type ReactNode, type ErrorInfo } from 'react';
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
   constructor(props: { children: ReactNode }) {
@@ -8,7 +8,7 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(err: Error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
