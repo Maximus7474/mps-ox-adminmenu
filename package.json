@@ -6,7 +6,7 @@
 	"description": "A simple admin menu for ox_core to handle players, jobs, etc....",
 	"type": "module",
 	"scripts": {
-		"web:dev": "cd web && vite dev",
+		"web:dev": "cd web && pnpm dev",
 		"build": "node scripts/build.js",
 		"watch": "node scripts/build.js --watch",
 		"format": "pnpm biome format --write",
