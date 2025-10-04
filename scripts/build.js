@@ -1,7 +1,7 @@
 //@ts-check
 
 import { exists, exec, getFiles } from './utils.js';
-import { createBuilder, createFxmanifest } from '@overextended/fx-utils';
+import { createBuilder, createFxmanifest } from '@communityox/fx-utils';
 
 const watch = process.argv.includes('--watch');
 const web = await exists('./web');
@@ -50,8 +50,8 @@ createBuilder(
       },
     });
 
-    if (web && !watch) await exec("cd ./web && vite build");
+    if (web && !watch) await exec("cd ./web && pnpm build");
   }
 );
 
-if (web && watch) await exec("cd ./web && vite build --watch");
+if (web && watch) await exec("cd ./web && pnpm build --watch");
