@@ -1,9 +1,9 @@
 {
-	"name": "fivem-typescript-boilerplate",
-	"author": "Overextended",
+	"name": "mps-ox-adminmenu",
+	"author": "Maximus7474",
 	"version": "0.0.0",
-	"license": "",
-	"description": "",
+	"license": "AGPL-3.0",
+	"description": "A simple admin menu for ox_core to handle players, jobs, etc....",
 	"type": "module",
 	"scripts": {
 		"web:dev": "cd web && vite dev",
@@ -13,13 +13,13 @@
 		"lint": "pnpm biome lint --write"
 	},
 	"keywords": [
-		"fivem"
+		"fivem", "ox_core"
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/overextended/fivem-typescript-boilerplate.git"
+		"url": "https://github.com/Maximus7474/mps-ox-adminmenu.git"
 	},
-	"bugs": "https://github.com/overextended/fivem-typescript-boilerplate/issues",
+	"bugs": "https://github.com/Maximus7474/mps-ox-adminmenu/issues",
 	"devDependencies": {
 		"@citizenfx/client": "latest",
 		"@citizenfx/server": "latest",
