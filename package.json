@@ -13,7 +13,8 @@
 		"lint": "pnpm biome lint --write"
 	},
 	"keywords": [
-		"fivem", "ox_core"
+		"fivem",
+		"ox_core"
 	],
 	"repository": {
 		"type": "git",
@@ -24,7 +25,6 @@
 		"@citizenfx/client": "latest",
 		"@citizenfx/server": "latest",
 		"@jgoz/esbuild-plugin-typecheck": "^4.0.3",
-		"@overextended/fx-utils": "^0.0.4",
 		"@types/node": "^22.13.9",
 		"@types/react": "^18.3.18",
 		"@types/react-dom": "^18.3.5",
@@ -35,8 +35,10 @@
 	},
 	"dependencies": {
 		"@biomejs/biome": "^1.9.4",
+		"@communityox/fx-utils": "^0.0.4",
+		"@communityox/ox_core": "^1.5.8",
+		"@communityox/ox_lib": "^3.31.4",
 		"@nativewrappers/fivem": "latest",
-		"@overextended/ox_lib": "latest",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1"
 	}
