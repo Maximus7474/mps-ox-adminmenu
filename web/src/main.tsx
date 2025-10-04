@@ -1,20 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import './index.css';
-import { isEnvBrowser } from './utils/misc.ts';
+import App from './App.tsx';
+import { isEnvBrowser } from './utils/misc';
+import ErrorBoundary from './providers/errorBoundary';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+const root = document.getElementById('root');
+
+createRoot(root!).render(
+  <StrictMode>
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  </StrictMode>,
 );
 
 if (isEnvBrowser()) {
   const root = document.getElementById('root');
 
   // https://i.imgur.com/iPTAdYV.png - Night time img
-  // https://i.imgur.com/3pzRj9n.png - Day time img
   root!.style.backgroundImage = 'url("https://i.imgur.com/3pzRj9n.png")';
   root!.style.backgroundSize = 'cover';
   root!.style.backgroundRepeat = 'no-repeat';
