@@ -4,13 +4,16 @@ import './index.css';
 import App from './App.tsx';
 import { isEnvBrowser } from './utils/misc';
 import ErrorBoundary from './providers/errorBoundary';
+import { HashRouter } from 'react-router-dom';
 
 const root = document.getElementById('root');
 
 createRoot(root!).render(
   <StrictMode>
     <ErrorBoundary>
-      <App />
+      <HashRouter>
+        <App />
+      </HashRouter>
     </ErrorBoundary>
   </StrictMode>,
 );
