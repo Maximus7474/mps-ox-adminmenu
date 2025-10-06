@@ -1,16 +1,21 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { X } from 'lucide-react';
+import { MoonIcon, Sun, LaptopMinimal, X } from 'lucide-react';
 import { Button } from './ui/button';
+import { useTheme } from '../providers/themeProvider';
+import { ButtonGroup, ButtonGroupSeparator } from './ui/button-group';
 
 export interface NavLink {
   path: string;
   name: string;
 }
 
+const iconClass = 'group-hover:-translate-y-[1px] group-hover:scale-125 transition-discrete duration-300';
+
 const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close }) => {
   const location = useLocation();
+  const { theme, setTheme } = useTheme();
 
   return (
     <nav className="bg-gray-900/90 p-4 shadow-xl sticky top-0 z-10 w-full rounded-t-lg">
@@ -40,9 +45,25 @@ const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close 
           </div>
         </div>
 
-        <Button variant='ghost' onClick={close} className='text-white'>
-          <X strokeWidth={3} />
-        </Button>
+        <ButtonGroup>
+          <Button
+            variant='ghost'
+            className='group'
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          >
+            {
+              theme === 'dark'
+                ? <MoonIcon className={iconClass} />
+                : theme === 'light'
+                  ? <Sun className={iconClass} />
+                  : <LaptopMinimal className={iconClass} />
+            }
+          </Button>
+          <ButtonGroupSeparator />
+          <Button variant='ghost' className='group' onClick={close}>
+            <X strokeWidth={3} className={iconClass} />
+          </Button>
+        </ButtonGroup>
       </div>
     </nav>
   );
