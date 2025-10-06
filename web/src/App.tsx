@@ -15,6 +15,8 @@ function App() {
   function handleClose() {
     setVisible(false);
     void fetchNui('exit');
+
+    if (isEnvBrowser()) setTimeout(() => setVisible(true), 500);
   }
 
 return (
