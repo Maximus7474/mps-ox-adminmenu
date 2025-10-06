@@ -18,10 +18,10 @@ const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close 
   const { theme, setTheme } = useTheme();
 
   return (
-    <nav className="bg-gray-900/90 p-4 shadow-xl sticky top-0 z-10 w-full rounded-t-lg">
+    <nav className="p-4 shadow-xl sticky top-0 z-10 w-full rounded-t-lg">
       <div className="flex gap-2 justify-between items-center">
-        <div className="flex gap-2 justify-between items-start">
-          <p className="text-white text-2xl font-bold">
+        <div className="flex gap-4 justify-between items-start">
+          <p className="text-2xl font-bold">
             Admin Menu
           </p>
 
@@ -35,7 +35,7 @@ const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close 
                   ${
                     location.pathname === link.path
                       ? 'bg-indigo-600 text-white shadow-md'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                      : 'hover:bg-gray-700 hover:text-white hover:-translate-y-[2px] group-hover:scale-125'
                   }
                 `}
               >
