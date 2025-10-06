@@ -5,6 +5,7 @@ import App from './App.tsx';
 import { isEnvBrowser } from './utils/misc';
 import ErrorBoundary from './providers/errorBoundary';
 import { HashRouter } from 'react-router-dom';
+import { ThemeProvider } from './providers/themeProvider.tsx';
 
 const root = document.getElementById('root');
 
@@ -12,7 +13,9 @@ createRoot(root!).render(
   <StrictMode>
     <ErrorBoundary>
       <HashRouter>
-        <App />
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <App />
+        </ThemeProvider>
       </HashRouter>
     </ErrorBoundary>
   </StrictMode>,
