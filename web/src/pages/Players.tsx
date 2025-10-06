@@ -1,5 +1,5 @@
 const Players: React.FC = () => {
-  return <div className="bg-gray-400">
+  return <div>
     Players Page
   </div>
 };

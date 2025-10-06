@@ -1,5 +1,5 @@
 const Groups: React.FC = () => {
-  return <div className="bg-gray-400">
+  return <div>
     Groups Page
   </div>
 };

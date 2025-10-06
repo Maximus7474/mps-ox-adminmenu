@@ -1,5 +1,5 @@
 const Home: React.FC = () => {
-  return <div className="bg-gray-400">
+  return <div>
     Home Page
   </div>
 };
