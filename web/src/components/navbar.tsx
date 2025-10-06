@@ -13,7 +13,7 @@ const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close 
   const location = useLocation();
 
   return (
-    <nav className="bg-gray-800 p-4 shadow-lg sticky top-0 z-10 w-full rounded-t-lg">
+    <nav className="bg-gray-900/90 p-4 shadow-xl sticky top-0 z-10 w-full rounded-t-lg">
       <div className="flex gap-2 justify-between items-center">
         <div className="flex gap-2 justify-between items-start">
           <p className="text-white text-2xl font-bold">
