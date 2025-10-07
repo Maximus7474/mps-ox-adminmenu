@@ -38,8 +38,14 @@ function App() {
         <Routes>
           <Route path='/' element={<PageLayout links={navLinks} close={handleClose} />} >
             <Route index element={<Home />} />
-            <Route path='groups' element={<Groups />} />
-            <Route path='players' element={<Players />} />
+            
+            <Route path='/groups'>
+              <Route index element={<Groups />} />
+            </Route>
+            
+            <Route path='/players'>
+              <Route index element={<Players />} />
+            </Route>
           </Route>
         </Routes>
       </div>
