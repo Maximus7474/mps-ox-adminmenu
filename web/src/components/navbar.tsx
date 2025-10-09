@@ -32,10 +32,10 @@ const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close 
           </p>
 
           <div className="flex space-x-4">
-            {links.map((link) => (
+            {links.map((link, idx) => (
               link.children
               ? (
-                <DropdownMenu>
+                <DropdownMenu key={idx}>
                   <DropdownMenuTrigger asChild>
                     <Button variant='ghost' className={`
                       px-3 py-2 rounded-md text-sm font-medium transition duration-300 hover:-translate-y-[2px] group-hover:scale-125
