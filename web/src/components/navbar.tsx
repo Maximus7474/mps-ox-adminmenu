@@ -72,9 +72,8 @@ const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close 
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <Button variant='ghost' asChild>
+                <Button variant='ghost' asChild key={idx} >
                   <Link
-                    key={link.path}
                     to={link.path}
                     className={`
                       px-3 py-2 rounded-md text-sm font-medium transition duration-300
