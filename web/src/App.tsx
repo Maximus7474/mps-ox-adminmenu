@@ -15,7 +15,8 @@ import PageLayout from './components/pagelayout';
 const navLinks: NavLink[] = [
   { name: 'Home', path: '/' },
   { name: 'Groups', path: '/groups', children: [
-    { name: 'View', path: 'view' }
+    { name: 'View', path: 'view' },
+    { name: 'Create', path: 'create' },
   ]},
   { name: 'Players', path: '/players' },
 ];
