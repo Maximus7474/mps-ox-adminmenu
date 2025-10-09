@@ -49,24 +49,26 @@ const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close 
                     </Button>
                   </DropdownMenuTrigger>
                     <DropdownMenuContent align="center">
-                      {link.children.map((item, idx) => (
+                      {link.children.map((item, idx) => {
+                        const path = `${link.path}/${item.path}`;
+
+                        return (
                         <DropdownMenuItem key={idx} asChild>
                           <Link
-                            key={item.path}
-                            to={item.path}
+                            to={path}
                             className={`
                               px-3 py-2 rounded-md text-sm font-medium transition duration-300 
-                              ${location.pathname === item.path
+                              ${location.pathname === path
                                 ? 'text-white shadow-md  underline underline-offset-2'
                                 : 'hover:bg-gray-700 hover:text-white'
                               }
                             `}
                           >
-                            {item.path === location.pathname && <ChevronRight />}
+                            {path === location.pathname && <ChevronRight />}
                             {item.name}
                           </Link>
                         </DropdownMenuItem>
-                    ))}
+                    )})}
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
