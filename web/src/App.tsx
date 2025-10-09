@@ -42,8 +42,9 @@ function App() {
             <Route index element={<Home />} />
             
             <Route path='/groups'>
-              <Route index element={<Groups />} />
-              <Route path='view' element={<Groups />} />
+              {Object.entries(Groups).map(([path, Component], idx) => (
+                <Route key={idx} path={path} element={<Component />} />
+              ))}
             </Route>
             
             <Route path='/players'>

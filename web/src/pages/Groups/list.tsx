@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { fetchNui } from "../utils/fetchNui";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
-import { Button } from "../components/ui/button";
 import { ChevronDown, ChevronsUpDown, ChevronUp, EyeIcon } from "lucide-react";
+import { fetchNui } from "../../utils/fetchNui";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../components/ui/table";
+import { Button } from "../../components/ui/button";
 
 interface Group {
   name: string;
@@ -39,7 +39,7 @@ const getIconForHeader = (field: FilterTypes, curFilter: Filter | null) => {
   else return <ChevronDown />;
 }
 
-const Groups: React.FC = () => {
+const GroupsList: React.FC = () => {
   const [groups, setGroups] = useState<Group[]>([]);
   const [filter, setFilter] = useState<Filter | null>(null);
 
@@ -111,4 +111,4 @@ const Groups: React.FC = () => {
   </div>
 };
 
-export default Groups;
+export default GroupsList;
