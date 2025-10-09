@@ -1,17 +1,23 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { MoonIcon, Sun, LaptopMinimal, X } from 'lucide-react';
+import { MoonIcon, Sun, LaptopMinimal, X, ChevronRight, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTheme } from '../providers/themeProvider';
 import { ButtonGroup, ButtonGroupSeparator } from './ui/button-group';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 
 export interface NavLink {
   path: string;
   name: string;
+  children?: NavLink[];
 }
 
 const iconClass = 'group-hover:-translate-y-[1px] group-hover:scale-125 transition-discrete duration-300';
+
+const isParentLinkActive = (children: NavLink[], pathname: string) => {
+  return children.some(child => pathname === child.path);
+}
 
 const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close }) => {
   const location = useLocation();
@@ -27,20 +33,60 @@ const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close 
 
           <div className="flex space-x-4">
             {links.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`
-                  px-3 py-2 rounded-md text-sm font-medium transition duration-300
-                  ${
-                    location.pathname === link.path
-                      ? 'bg-indigo-600 text-white shadow-md'
-                      : 'hover:bg-gray-700 hover:text-white hover:-translate-y-[2px] group-hover:scale-125'
-                  }
-                `}
-              >
-                {link.name}
-              </Link>
+              link.children
+              ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant='ghost' className={`
+                      px-3 py-2 rounded-md text-sm font-medium transition duration-300 hover:-translate-y-[2px] group-hover:scale-125
+                      ${
+                        isParentLinkActive(link.children, location.pathname)
+                          && 'shadow-md underline underline-offset-2 hover:underline-offset-4'
+                      }
+                    `}>
+                      {link.name}
+                      {<ChevronDown />}
+                    </Button>
+                  </DropdownMenuTrigger>
+                    <DropdownMenuContent align="center">
+                      {link.children.map((item, idx) => (
+                        <DropdownMenuItem key={idx} asChild>
+                          <Link
+                            key={item.path}
+                            to={item.path}
+                            className={`
+                              px-3 py-2 rounded-md text-sm font-medium transition duration-300 
+                              ${location.pathname === item.path
+                                ? 'text-white shadow-md  underline underline-offset-2'
+                                : 'hover:bg-gray-700 hover:text-white'
+                              }
+                            `}
+                          >
+                            {item.path === location.pathname && <ChevronRight />}
+                            {item.name}
+                          </Link>
+                        </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Button variant='ghost' asChild>
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`
+                      px-3 py-2 rounded-md text-sm font-medium transition duration-300
+                      ${
+                        location.pathname === link.path
+                          ? 'text-white shadow-md underline underline-offset-2'
+                          : 'hover:-translate-y-[2px] group-hover:scale-125'
+                      }
+                    `}
+                  >
+                    {link.name}
+                  </Link>
+                </Button>
+              )
             ))}
           </div>
         </div>
