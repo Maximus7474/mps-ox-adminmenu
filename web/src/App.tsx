@@ -14,7 +14,9 @@ import PageLayout from './components/pagelayout';
 
 const navLinks: NavLink[] = [
   { name: 'Home', path: '/' },
-  { name: 'Groups', path: '/groups' },
+  { name: 'Groups', path: '/groups', children: [
+    { name: 'View', path: '/groups/view' }
+  ]},
   { name: 'Players', path: '/players' },
 ];
 
@@ -41,6 +43,7 @@ function App() {
             
             <Route path='/groups'>
               <Route index element={<Groups />} />
+              <Route path='view' element={<Groups />} />
             </Route>
             
             <Route path='/players'>
