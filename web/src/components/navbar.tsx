@@ -59,7 +59,7 @@ const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close 
                             className={`
                               px-3 py-2 rounded-md text-sm font-medium transition duration-300 
                               ${location.pathname === path
-                                ? 'text-white shadow-md  underline underline-offset-2'
+                                ? 'shadow-md  underline underline-offset-2'
                                 : 'hover:bg-gray-700 hover:text-white'
                               }
                             `}
@@ -79,7 +79,7 @@ const Navbar: React.FC<{links: NavLink[], close: () => void}> = ({ links, close 
                       px-3 py-2 rounded-md text-sm font-medium transition duration-300
                       ${
                         location.pathname === link.path
-                          ? 'text-white shadow-md underline underline-offset-2'
+                          ? 'shadow-md underline underline-offset-2'
                           : 'hover:-translate-y-[2px] group-hover:scale-125'
                       }
                     `}
