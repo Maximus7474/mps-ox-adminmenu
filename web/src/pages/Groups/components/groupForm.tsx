@@ -28,7 +28,7 @@ interface GroupFormProps {
   title: string;
   submit: (group: GroupData) => void;
   group?: GroupData;
-  submitError?: string;
+  submitError: string | null;
 }
 
 const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submit, submitError }) => {
