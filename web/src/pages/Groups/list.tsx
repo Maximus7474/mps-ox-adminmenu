@@ -39,7 +39,7 @@ const getIconForHeader = (field: FilterTypes, curFilter: Filter | null) => {
   else return <ChevronDown />;
 }
 
-const GroupsList: React.FC = () => {
+const GroupsList = () => {
   const [groups, setGroups] = useState<Group[]>([]);
   const [filter, setFilter] = useState<Filter | null>(null);
 
