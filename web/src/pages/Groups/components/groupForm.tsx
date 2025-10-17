@@ -8,6 +8,8 @@ import { LucidePlusCircle, LucideTrash2 } from "lucide-react";
 import { Separator } from "../../../components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "../../../components/ui/alert";
 
+/* @ToDo: improve styling, entire element overflows messing with page style */
+
 type Grade = {
   id: number;
   label: string;
