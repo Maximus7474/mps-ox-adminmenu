@@ -7,34 +7,21 @@ import { Checkbox } from "../../../components/ui/checkbox";
 import { LucidePlusCircle, LucideTrash2 } from "lucide-react";
 import { Separator } from "../../../components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "../../../components/ui/alert";
+import { GroupDataDto } from "../types/groupDataDto";
 
 /* @ToDo: improve styling, entire element overflows messing with page style */
-
-type Grade = {
-  id: number;
-  label: string;
-  role: string | null;
-};
-
-export type GroupData = {
-  name: string;
-  label: string;
-  type?: string;
-  hasAccount?: boolean;
-  grades: Grade[];
-};
 
 const defaultForm = { name: '', label: '', grades: [{ id: 1, label: '', role: null}]};
 
 interface GroupFormProps {
   title: string;
-  submit: (group: GroupData) => void;
-  group?: GroupData;
+  submit: (group: GroupDataDto) => void;
+  group?: GroupDataDto;
   submitError: string | null;
 }
 
 const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submit, submitError }) => {
-  const [formData, setFormData] = useState<GroupData>(group);
+  const [formData, setFormData] = useState<GroupDataDto>(group);
 
   const handleAddGrade = useCallback(() => {
     const maxId = formData.grades.reduce((max, grade) => Math.max(max, grade.id), 0);

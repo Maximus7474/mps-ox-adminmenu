@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { fetchNui } from "../../utils/fetchNui";
-import GroupForm, { GroupData } from "./components/groupForm";
+import GroupForm from "./components/groupForm";
 
 import { type NuiFetchResponse } from "@common/types/nuiInterface";
 
 import { useNavigate } from "react-router-dom";
+import { GroupDataDto } from "./types/groupDataDto";
 
 const GroupCreate = () => {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (group: GroupData) => {
+  const handleSubmit = (group: GroupDataDto) => {
     fetchNui<NuiFetchResponse<null>>('group', { action: 'create', data: group })
     .then(response => {
       if (response.success) {
