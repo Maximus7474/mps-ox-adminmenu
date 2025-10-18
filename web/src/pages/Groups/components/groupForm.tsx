@@ -97,7 +97,7 @@ const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submi
 
     <Separator className="my-2" />
 
-    <form className="flex-grow overflow-y-auto min-h-0">
+    <form className="flex-grow overflow-y-scroll min-h-0 pr-2">
       <FieldSet>
         <div className="grid grid-cols-2 gap-4 max-h-full">
           <FieldGroup>
