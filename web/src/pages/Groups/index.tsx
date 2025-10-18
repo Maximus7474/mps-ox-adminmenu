@@ -1,4 +1,5 @@
 import GroupCreate from "./create";
+import GroupEdit from "./edit";
 import GroupsList from "./list";
 import GroupView from "./view";
 
@@ -7,4 +8,5 @@ export default {
   'view': GroupsList,
   'create': GroupCreate,
   'view/:groupName': GroupView,
+  'edit/:groupName': GroupEdit,
 };
