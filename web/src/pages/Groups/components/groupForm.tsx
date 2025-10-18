@@ -8,6 +8,7 @@ import { LucidePlusCircle, LucideTrash2 } from "lucide-react";
 import { Separator } from "../../../components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "../../../components/ui/alert";
 import { GroupDataDto } from "../types/groupDataDto";
+import { ButtonGroup } from "../../../components/ui/button-group";
 
 /* @ToDo: improve styling, entire element overflows messing with page style */
 
@@ -67,16 +68,39 @@ const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submi
     submit(formData);
   }
 
-  return <div className="p-4">
-    <h1 className="text-xl text-center">{title}</h1>
+  return <div className="p-4 h-full flex flex-col">
+    <div className="flex flex-col w-full">
+      <div className="flex flex-row justify-between items-center">
+        <h1 className="text-xl">{title}</h1>
+
+        <ButtonGroup>
+          <Button type="submit">Submit</Button>
+          <Button variant="destructive" type="button">
+            Cancel
+          </Button>
+        </ButtonGroup>
+      </div>
+      
+      {submitError && (
+        <div className="mt-3"> {/* Added margin-top for spacing */}
+          <Alert variant="destructive">
+            <AlertTitle>
+              Unable to save
+            </AlertTitle>
+            <AlertDescription>{submitError}</AlertDescription>
+          </Alert>
+        </div>
+      )}
+    </div>
 
     <Separator className="my-2" />
 
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex-grow overflow-y-auto min-h-0">
       <FieldSet>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 max-h-full">
           <FieldGroup>
-            <h2>General Details</h2>
+            <h2 className="text-lg">General Details</h2>
+
             <Field>
               <FieldLabel>Name</FieldLabel>
               <Input
@@ -122,9 +146,22 @@ const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submi
               <FieldLabel>Has account</FieldLabel>
             </Field>
           </FieldGroup>
+
           <FieldGroup>
-            <h2>Grades</h2>
-            <div className="space-y-2 overflow-y-auto max-h-[60%]">
+            <div className="flex flex-row justify-between items-center">
+              <h2 className="text-lg">Grades</h2>
+
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleAddGrade}
+              >
+                <LucidePlusCircle className="w-4 h-4 mr-2" />
+                Add New Rank
+              </Button>
+            </div>
+
+            <div className="space-y-2">
               {formData.grades.map((grade, index) => (
                 <div key={grade.id} className="p-4 border border-200 rounded-lg shadow-sm">
                   <div className="flex justify-between items-center mb-3">
@@ -172,37 +209,8 @@ const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submi
                 </div>
               ))}
             </div>
-
-            <FieldSeparator />
-
-            <div className="flex justify-end">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={handleAddGrade}
-              >
-                <LucidePlusCircle className="w-4 h-4 mr-2" />
-                Add New Rank
-              </Button>
-            </div>
           </FieldGroup>
         </div>
-        <FieldSeparator />
-
-        { submitError && (<div className="mx-auto w-[40%] text-start">
-          <Alert variant="destructive">
-            <AlertTitle>
-              Unable to save
-            </AlertTitle>
-            <AlertDescription>{submitError}</AlertDescription>
-          </Alert>
-        </div>)}
-        <Field orientation="horizontal">
-          <Button type="submit">Submit</Button>
-          <Button variant="outline" type="button">
-            Cancel
-          </Button>
-        </Field>
       </FieldSet>
     </form>
   </div>;
