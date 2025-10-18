@@ -3,6 +3,7 @@ import { ChevronDown, ChevronsUpDown, ChevronUp, EyeIcon } from "lucide-react";
 import { fetchNui } from "../../utils/fetchNui";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../components/ui/table";
 import { Button } from "../../components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 interface Group {
   name: string;
@@ -40,6 +41,8 @@ const getIconForHeader = (field: FilterTypes, curFilter: Filter | null) => {
 }
 
 const GroupsList = () => {
+  const navigate = useNavigate();
+
   const [groups, setGroups] = useState<Group[]>([]);
   const [filter, setFilter] = useState<Filter | null>(null);
 
@@ -100,7 +103,7 @@ const GroupsList = () => {
             <TableCell>{group.label}</TableCell>
             <TableCell>{group.type ?? 'N/A'}</TableCell>
             <TableCell className="flex justify-center">
-              <Button variant='outline'>
+              <Button variant='outline' onClick={() => navigate(`/groups/view/${group.name}/`)}>
                 <EyeIcon />
               </Button>
             </TableCell>
