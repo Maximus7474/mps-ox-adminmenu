@@ -1,5 +1,5 @@
 import { Input } from "../../../components/ui/input";
-import { Field, FieldGroup, FieldLabel, FieldSeparator, FieldSet } from "../../../components/ui/field";
+import { Field, FieldGroup, FieldLabel, FieldSet } from "../../../components/ui/field";
 import { Button } from "../../../components/ui/button";
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "../../../components/ui/select";
 import { FormEvent, useCallback, useState } from "react";
@@ -9,6 +9,7 @@ import { Separator } from "../../../components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "../../../components/ui/alert";
 import { GroupDataDto } from "../types/groupDataDto";
 import { ButtonGroup } from "../../../components/ui/button-group";
+import { useNavigate } from "react-router-dom";
 
 /* @ToDo: improve styling, entire element overflows messing with page style */
 
@@ -22,6 +23,7 @@ interface GroupFormProps {
 }
 
 const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submit, submitError }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<GroupDataDto>(group);
 
   const handleAddGrade = useCallback(() => {
@@ -74,8 +76,8 @@ const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submi
         <h1 className="text-xl">{title}</h1>
 
         <ButtonGroup>
-          <Button type="submit">Submit</Button>
-          <Button variant="destructive" type="button">
+          <Button type="submit" onClick={handleSubmit}>Submit</Button>
+          <Button variant="destructive" type="button" onClick={() => navigate(group.name ? `/groups/view/${group.name}/` : '/groups/view/')}>
             Cancel
           </Button>
         </ButtonGroup>
@@ -95,7 +97,7 @@ const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submi
 
     <Separator className="my-2" />
 
-    <form onSubmit={handleSubmit} className="flex-grow overflow-y-auto min-h-0">
+    <form className="flex-grow overflow-y-auto min-h-0">
       <FieldSet>
         <div className="grid grid-cols-2 gap-4 max-h-full">
           <FieldGroup>
