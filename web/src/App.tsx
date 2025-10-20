@@ -5,11 +5,11 @@ import { useNuiEvent } from './hooks/useNuiEvent';
 import { fetchNui } from './utils/fetchNui';
 import VisibilityProvider from './providers/visibilityProvider'
 import { type NavLink } from './components/navbar';
+import PageLayout from './components/pagelayout';
 
 // Pages
 import Home from './pages/Home';
 import Groups from './pages/Groups';
-import PageLayout from './components/pagelayout';
 import Players from './pages/Players';
 
 const navLinks: NavLink[] = [
@@ -18,7 +18,9 @@ const navLinks: NavLink[] = [
     { name: 'View', path: 'view' },
     { name: 'Create', path: 'create' },
   ]},
-  { name: 'Players', path: '/players/view' },
+  { name: 'Players', path: '/players', children: [
+    { name: 'View Online', path: 'view' },
+  ]},
 ];
 
 function App() {
