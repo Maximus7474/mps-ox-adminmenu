@@ -20,6 +20,7 @@ const navLinks: NavLink[] = [
   ]},
   { name: 'Players', path: '/players', children: [
     { name: 'View Online', path: 'view' },
+    { name: 'Search', path: 'search' },
   ]},
 ];
 
