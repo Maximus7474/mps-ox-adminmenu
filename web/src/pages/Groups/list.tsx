@@ -5,6 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from ".
 import { Button } from "../../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { OxGroupShort } from "@common/types/ox_types";
+import { debugGroups } from "../../debugdata/groups";
 
 type FilterTypes = 'name' | 'label' | 'type';
 
@@ -12,19 +13,6 @@ interface Filter {
   field: FilterTypes;
   asc: boolean;
 }
-
-const debugGroups: OxGroupShort[] = [
-  {
-    name: 'police',
-    label: 'Police Department',
-    type: 'job',
-  },
-  {
-    name: 'ambulance',
-    label: 'Emergency Response',
-    type: 'job',
-  },
-];
 
 const getIconForHeader = (field: FilterTypes, curFilter: Filter | null) => {
   if (!curFilter || field !== curFilter.field) return <ChevronsUpDown />;

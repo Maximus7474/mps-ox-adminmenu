@@ -1,4 +1,4 @@
-import { OxGroup } from "@common/types/ox_types";
+import { OxGroup, OxGroupShort } from "@common/types/ox_types";
 import { GroupDataDto } from "../pages/Groups/types/groupDataDto";
 
 const debugGrades: OxGroup['grades'] = [];
@@ -31,4 +31,17 @@ export const debugGroupDataDto: GroupDataDto = {
     { id: 2, label: 'Grade 2', role: 'contributor' },
     { id: 3, label: 'Grade 3', role: 'owner' },
   ],
-}
+};
+
+export const debugGroups: OxGroupShort[] = [
+  {
+    name: 'police',
+    label: 'Police Department',
+    type: 'job',
+  },
+  {
+    name: 'ambulance',
+    label: 'Emergency Response',
+    type: 'job',
+  },
+];
