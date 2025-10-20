@@ -5,24 +5,9 @@ import { fetchNui } from "../utils/fetchNui";
 import { ButtonGroup } from "../components/ui/button-group";
 import { Button } from "../components/ui/button";
 import { Loader2 } from "lucide-react";
+import { debugPlayerList } from "../debugdata";
 
 const maxplayers = 48, availablestaff = 5;
-
-const debugPlayerList: PlayerShortInfo[] = [];
-const groups = ['Police', 'Ambulance', 'Gang', 'Staff', undefined];
-for (let i = 1; i <= 25; i++) {
-  debugPlayerList.push({
-    source: `${i}`,
-    name: `Player ${i}`,
-    character: {
-      firstname: 'Firstname',
-      lastname: 'Lastname',
-      id: `${i}`,
-      stateid: window.crypto.randomUUID().split('-', 1)[0],
-      activegroup: groups[ i % groups.length ],
-    },
-  })
-}
 
 const Home: React.FC = () => {
   const [playerlist, setPlayerList] = useState<PlayerShortInfo[]>([]);

@@ -7,28 +7,7 @@ import { Check, Loader, X } from "lucide-react";
 
 import { type OxGroup } from "@common/types/ox_types";
 import { fetchNui } from "../../utils/fetchNui";
-
-const debugGrades: OxGroup['grades'] = [];
-
-for (let i = 6; i <= 15; i++) {
-  debugGrades.push({ label: `Grade ${i}`, accountRole: 'owner' });
-}
-
-const debugGroup: OxGroup = {
-  name: 'generic_name',
-  label: 'Generic thing',
-  grades: [
-    { label: 'Grade 1' },
-    { label: 'Grade 2', accountRole: 'viewer' },
-    { label: 'Grade 3', accountRole: 'contributor' },
-    { label: 'Grade 4', accountRole: 'manager' },
-    { label: 'Grade 5', accountRole: 'owner' },
-    ...debugGrades
-  ],
-  type: 'job',
-  hasAccount: true,
-  colour: 123
-}
+import { debugGroup } from "../../debugdata/groups";
 
 const GroupView = () => {
   const { groupName } = useParams();
@@ -43,7 +22,7 @@ const GroupView = () => {
   * - Add current players within the groupe
   */
   useEffect(() => {
-    fetchNui<OxGroup | null>('groups', { action: 'fetch', data: groupName }, { data: debugGroup })
+    fetchNui<OxGroup | null>('groups', { action: 'fetch', data: groupName }, { data: debugGroup, delay: 5_000 })
     .then(response => {
       if (response) {
         setGroupData(response);

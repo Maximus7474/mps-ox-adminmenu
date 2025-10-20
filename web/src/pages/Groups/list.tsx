@@ -4,14 +4,7 @@ import { fetchNui } from "../../utils/fetchNui";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../components/ui/table";
 import { Button } from "../../components/ui/button";
 import { useNavigate } from "react-router-dom";
-
-interface Group {
-  name: string;
-  label: string;
-  type?: string;
-  colour?: number;
-  hasAccount?: boolean;
-}
+import { OxGroupShort } from "@common/types/ox_types";
 
 type FilterTypes = 'name' | 'label' | 'type';
 
@@ -20,7 +13,7 @@ interface Filter {
   asc: boolean;
 }
 
-const debugGroups: Group[] = [
+const debugGroups: OxGroupShort[] = [
   {
     name: 'police',
     label: 'Police Department',
@@ -43,13 +36,13 @@ const getIconForHeader = (field: FilterTypes, curFilter: Filter | null) => {
 const GroupsList = () => {
   const navigate = useNavigate();
 
-  const [groups, setGroups] = useState<Group[]>([]);
+  const [groups, setGroups] = useState<OxGroupShort[]>([]);
   const [filter, setFilter] = useState<Filter | null>(null);
 
   const filterGroups = (field: FilterTypes) => {
     const newAsc = filter?.field === field ? !filter.asc : true;
 
-    const sortedGroups = [...groups].sort((a: Group, b: Group) => {
+    const sortedGroups = [...groups].sort((a: OxGroupShort, b: OxGroupShort) => {
       const aValue = (a[field] ?? '').toString();
       const bValue = (b[field] ?? '').toString();
 
@@ -63,7 +56,7 @@ const GroupsList = () => {
   };
 
   useEffect(() => {
-    fetchNui<Group[]>('groups', { action: 'get' }, { data: debugGroups })
+    fetchNui<OxGroupShort[]>('groups', { action: 'get' }, { data: debugGroups })
     .then((r) => {
       setGroups(r);
     });
@@ -77,7 +70,7 @@ const GroupsList = () => {
         <TableRow className="hover:bg-transparent">
           <TableHead onClick={() => filterGroups('name')}>
             <div className="flex justify-center items-center gap-2">
-              <span>Group</span>
+              <span>OxGroupShort</span>
               {getIconForHeader('name', filter)}
             </div>
           </TableHead>

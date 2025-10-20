@@ -10,16 +10,7 @@ import { Loader } from "lucide-react";
 import { ButtonGroup } from "../../components/ui/button-group";
 import { Button } from "../../components/ui/button";
 import { GroupDataDto } from "./types/groupDataDto";
-
-const debugGroupDataDto: GroupDataDto = {
-  name: 'generic_name',
-  label: 'Generic group',
-  grades: [
-    { id: 1, label: 'Grade 1', role: null },
-    { id: 2, label: 'Grade 2', role: 'contributor' },
-    { id: 3, label: 'Grade 3', role: 'owner' },
-  ],
-}
+import { debugGroupDataDto } from "../../debugdata/groups";
 
 const GroupEdit = () => {
   const { groupName } = useParams();
@@ -30,7 +21,7 @@ const GroupEdit = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchNui<GroupDataDto | null>('groups', { action: 'edit', name: groupName }, { data: debugGroupDataDto })
+    fetchNui<GroupDataDto | null>('groups', { action: 'edit', name: groupName }, { data: debugGroupDataDto, delay: 1_000 })
     .then(response => {
       if (response) {
         setGroupData(response);
