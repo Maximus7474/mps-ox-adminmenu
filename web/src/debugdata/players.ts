@@ -6,6 +6,7 @@ const groups = ['Police', 'Ambulance', 'Gang', 'Staff', undefined];
 for (let i = 1; i <= 25; i++) {
   list.push({
     source: `${i}`,
+    userid: i + 2,
     name: `Player ${i}`,
     character: {
       firstname: 'Firstname',

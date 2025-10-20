@@ -1,5 +1,6 @@
 export interface PlayerShortInfo {
   source: string;
+  userid: number;
   name: string;
   character: {
     firstname: string;
