@@ -9,8 +9,8 @@ import { type NavLink } from './components/navbar';
 // Pages
 import Home from './pages/Home';
 import Groups from './pages/Groups';
-import Players from './pages/Players';
 import PageLayout from './components/pagelayout';
+import Players from './pages/Players';
 
 const navLinks: NavLink[] = [
   { name: 'Home', path: '/' },
@@ -18,7 +18,7 @@ const navLinks: NavLink[] = [
     { name: 'View', path: 'view' },
     { name: 'Create', path: 'create' },
   ]},
-  { name: 'Players', path: '/players' },
+  { name: 'Players', path: '/players/view' },
 ];
 
 function App() {
@@ -49,7 +49,9 @@ function App() {
             </Route>
             
             <Route path='/players'>
-              <Route index element={<Players />} />
+              {Object.entries(Players).map(([path, Component], idx) => (
+                <Route key={idx} path={path} element={<Component />} />
+              ))}
             </Route>
           </Route>
         </Routes>
