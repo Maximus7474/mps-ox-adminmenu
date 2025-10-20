@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, ChevronsUpDown, ChevronUp, EyeIcon } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../components/ui/table";
 import { Button } from "../../../components/ui/button";
@@ -35,8 +35,12 @@ interface PlayerListProps {
 const PlayerList: React.FC<PlayerListProps> = ({ players }) => {
   const navigate = useNavigate();
 
-  const [playerlist, setPlayerList] = useState<PlayerShortInfo[]>(players);
+  const [playerlist, setPlayerList] = useState<PlayerShortInfo[]>([]);
   const [filter, setFilter] = useState<Filter | null>(null);
+
+  useEffect(() => {
+    setPlayerList(players);
+  }, [players]);
 
   const filterPlayers = (field: FilterTypes) => {
     const newAsc = filter?.field === field ? !filter.asc : true;
