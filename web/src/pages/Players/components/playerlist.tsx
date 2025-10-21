@@ -3,7 +3,9 @@ import { ChevronDown, ChevronsUpDown, ChevronUp, EyeIcon } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../components/ui/table";
 import { Button } from "../../../components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { PlayerShortInfo } from "@common/types/players";
+import { OnlinePlayerShortInfo, PlayerShortInfo } from "@common/types/players";
+
+type PlayerInterface = OnlinePlayerShortInfo | PlayerShortInfo;
 
 type FilterTypes = 'name' | 'character_name' | 'source' | 'userid' | 'stateid';
 
@@ -19,23 +21,24 @@ const getIconForHeader = (field: FilterTypes, curFilter: Filter | null) => {
   else return <ChevronDown />;
 }
 
-const getValueForFilter = (filter: FilterTypes, player: PlayerShortInfo): string | number | null => {
+const getValueForFilter = (filter: FilterTypes, player: PlayerInterface): string | number | null => {
   if (filter === 'name') return player.name;
-  if (filter === 'source') return player.source;
-  if (filter === 'userid') return player.source;
+  if (filter === 'source') return (player as OnlinePlayerShortInfo).source;
+  if (filter === 'userid') return player.userid;
   if (filter === 'stateid') return player.character.stateid;
   if (filter === 'character_name') return `${player.character.firstname} ${player.character.lastname}`;
   return null;
 }
 
 interface PlayerListProps {
-  players: PlayerShortInfo[];
+  players: PlayerInterface[];
+  onlinelist?: boolean;
 }
 
-const PlayerList: React.FC<PlayerListProps> = ({ players }) => {
+const PlayerList: React.FC<PlayerListProps> = ({ players, onlinelist = false }) => {
   const navigate = useNavigate();
 
-  const [playerlist, setPlayerList] = useState<PlayerShortInfo[]>([]);
+  const [playerlist, setPlayerList] = useState<PlayerInterface[]>([]);
   const [filter, setFilter] = useState<Filter | null>(null);
 
   useEffect(() => {
@@ -45,7 +48,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players }) => {
   const filterPlayers = (field: FilterTypes) => {
     const newAsc = filter?.field === field ? !filter.asc : true;
 
-    const sortedPlayers = [...playerlist].sort((a: PlayerShortInfo, b: PlayerShortInfo) => {
+    const sortedPlayers = [...playerlist].sort((a: PlayerInterface, b: PlayerInterface) => {
       const aValue = (getValueForFilter(field, a) ?? '');
       const bValue = (getValueForFilter(field, b) ?? '');
 
@@ -66,12 +69,12 @@ const PlayerList: React.FC<PlayerListProps> = ({ players }) => {
   return <Table className="w-[80%] mx-auto">
     <TableHeader>
       <TableRow className="hover:bg-transparent">
-        <TableHead onClick={() => filterPlayers('source')}>
+        {onlinelist && <TableHead onClick={() => filterPlayers('source')}>
           <div className="flex justify-center items-center gap-2">
             <span>Server Id</span>
             {getIconForHeader('source', filter)}
           </div>
-        </TableHead>
+        </TableHead>}
         <TableHead onClick={() => filterPlayers('userid')}>
           <div className="flex justify-center items-center gap-2">
             <span>User Id</span>
@@ -102,7 +105,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players }) => {
     <TableBody>
       {playerlist.map((player, idx) => (
         <TableRow key={idx}>
-          <TableCell>{player.source}</TableCell>
+          {onlinelist && <TableCell>{(player as OnlinePlayerShortInfo).source}</TableCell>}
           <TableCell>{player.userid}</TableCell>
           <TableCell>{player.name}</TableCell>
           <TableCell>{player.character.stateid}</TableCell>
