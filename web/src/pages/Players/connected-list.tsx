@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { fetchNui } from "../../utils/fetchNui";
-import { PlayerShortInfo } from "@common/types/players";
+import { OnlinePlayerShortInfo } from "@common/types/players";
 import { debugPlayerList } from "../../debugdata";
 import PlayerList from "./components/playerlist";
 
 const OnlinePlayersList = () => {
-  const [players, setPlayers] = useState<PlayerShortInfo[]>([]);
+  const [players, setPlayers] = useState<OnlinePlayerShortInfo[]>([]);
 
   useEffect(() => {
-    fetchNui<PlayerShortInfo[]>('players', { action: 'get' }, { data: debugPlayerList })
+    fetchNui<OnlinePlayerShortInfo[]>('players', { action: 'get' }, { data: debugPlayerList })
     .then((r) => {
       setPlayers(r);
     });
@@ -17,7 +17,7 @@ const OnlinePlayersList = () => {
   return <div className="p-4">
     <h1>Players Page</h1>
 
-    <PlayerList players={players} />
+    <PlayerList players={players} onlinelist/>
   </div>
 };
 
