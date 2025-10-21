@@ -32,7 +32,8 @@
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.9.3",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.13.13",
