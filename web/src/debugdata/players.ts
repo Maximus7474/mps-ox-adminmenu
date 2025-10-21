@@ -1,6 +1,6 @@
-import { type PlayerShortInfo } from "@common/types/players";
+import { type OnlinePlayerShortInfo } from "@common/types/players";
 
-const list: PlayerShortInfo[] = [];
+const list: OnlinePlayerShortInfo[] = [];
 
 const groups = ['Police', 'Ambulance', 'Gang', 'Staff', undefined];
 for (let i = 1; i <= 25; i++) {
@@ -18,4 +18,4 @@ for (let i = 1; i <= 25; i++) {
   })
 }
 
-export const debugPlayerList: PlayerShortInfo[] = list;
+export const debugPlayerList: OnlinePlayerShortInfo[] = list;
