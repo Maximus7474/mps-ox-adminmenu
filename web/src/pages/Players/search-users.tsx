@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useDebounceCallback } from 'usehooks-ts';
 import { fetchNui } from "../../utils/fetchNui";
 import { PlayerShortInfo } from "@common/types/players";
 import { debugPlayerList } from "../../debugdata";
@@ -11,8 +12,10 @@ const PlayerSearch = () => {
   const [search, setSearchText] = useState<string>('');
   const [players, setPlayers] = useState<PlayerShortInfo[]>([]);
 
+  const debounced = useDebounceCallback(setSearchText, 500);
+
   useEffect(() => {
-    if (search.length > 2) {
+    if (search.length > 0) {
       if (isEnvBrowser()) {
         setPlayers(debugPlayerList.filter(
           (player) => (
@@ -34,11 +37,10 @@ const PlayerSearch = () => {
   return <div className="p-4">
     <div className="mb-8 w-full max-w-lg mx-auto">
       <Input
-        // Full width within its max-width container, prominent
         className="w-full h-12 px-4 text-base shadow-sm"
         placeholder="Search by Name, Character Name, or ID..."
         type="search"
-        onChange={(e) => setSearchText(e.target.value)}
+        onChange={(e) => debounced(e.target.value)}
       />
     </div>
 
