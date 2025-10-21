@@ -1,5 +1,4 @@
 export interface PlayerShortInfo {
-  source: number;
   userid: number;
   name: string;
   character: {
@@ -9,4 +8,8 @@ export interface PlayerShortInfo {
     stateid: string;
     activegroup?: string;
   };
+}
+
+export interface OnlinePlayerShortInfo extends PlayerShortInfo {
+  source: number;
 }
