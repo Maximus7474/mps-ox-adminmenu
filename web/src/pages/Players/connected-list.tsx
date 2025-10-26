@@ -15,7 +15,7 @@ const OnlinePlayersList = () => {
   }, []);
 
   return <div className="p-4">
-    <h1>Players Page</h1>
+    <h1 className="text-lg">Connected Players</h1>
 
     <PlayerList players={players} onlinelist/>
   </div>
