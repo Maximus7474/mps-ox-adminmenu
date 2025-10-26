@@ -33,6 +33,7 @@ export interface PlayerCharacterShort {
   stateId: string;
   firstName: string;
   lastName: string;
+  fullName: string;
   gender: string;
   lastPlayed: number;
   isDead: 0 | 1;
