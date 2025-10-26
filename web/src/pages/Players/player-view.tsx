@@ -10,6 +10,10 @@ import { Button } from "../../components/ui/button";
 import { Separator } from "../../components/ui/separator";
 import { formatDate, formatTimeDifference } from "../../utils/misc";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../components/ui/accordion";
+import DateSelector from "../../components/dateSelector";
+import { Label } from "../../components/ui/label";
+import { Checkbox } from "../../components/ui/checkbox";
+import { Input } from "../../components/ui/input";
 
 const displayLastPlayed = (characters: PlayerCharacterShort[]) => {
   let latestDate = characters[0].lastPlayed;
@@ -28,9 +32,10 @@ const PlayerView = () => {
   const { userid } = useParams();
   const [player, setPlayer] = useState<PlayerRecap>();
   const [loading, setLoading] = useState<boolean>(true);
+  const [banForm, setBanForm] = useState<{until: Date | 'perma' | null; reason: string;}>({until: new Date(), reason: ''});
 
   useEffect(() => {
-    fetchNui<PlayerRecap | null>('player', { action: 'get', userid }, { data: debugPlayerRecap, delay: 1_000 })
+    fetchNui<PlayerRecap | null>('player', { action: 'get', userid }, { data: {...debugPlayerRecap, banned: undefined}, delay: 1_000 })
     .then((r) => {
       if (r) setPlayer(r);
     })
@@ -110,6 +115,40 @@ const PlayerView = () => {
             : <p>Permanent.</p>
           }
         </>)}
+
+        <Separator className="mt-2" />
+
+        <Accordion
+          type="single"
+          collapsible
+          className="w-full mb-2"
+        >
+          <AccordionItem value="1">
+            <AccordionTrigger>Ban Player</AccordionTrigger>
+            <AccordionContent>
+              <Label>Banned until:</Label>
+              <DateSelector selectionChange={(date) => setBanForm(prev => ({reason: prev.reason, until: date}))} selectTime blankValues minTimestamp={new Date()} disabled={banForm.until === 'perma'}/>
+
+              <div className="mt-4 flex items-center gap-3">
+                <Checkbox id="perma-box" checked={banForm.until === 'perma'} onCheckedChange={(e) => setBanForm(prev => ({reason: prev.reason, until: e ? 'perma' : null}))} />
+                <Label htmlFor="perma-box">Permanent Ban:</Label>
+              </div>
+
+              <div className="mt-4">
+                <Input id="ban-reason" placeholder="Ban Reason" onChange={(e) => setBanForm(prev => ({reason: e.target.value, until: prev.until}))}/>
+              </div>
+
+              <div className="flex flew-row justify-between mt-4">
+                <Button variant={player.banned ? 'ghost' : 'destructive'} disabled={!!player.banned}>
+                  Unban player
+                </Button>
+                <Button variant={!player.banned ? 'ghost' : 'secondary'} disabled={!!player.banned || !banForm.until}>
+                  Ban player
+                </Button>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
       <div className="flex-1">
         <h2 className="text-lg font-bold">Characters</h2>
@@ -118,7 +157,6 @@ const PlayerView = () => {
           type="single"
           collapsible
           className="w-full"
-          defaultValue="item-1"
         >
           {player.characters.map((char, idx) => (
             <AccordionItem value={char.stateId} key={idx}>
