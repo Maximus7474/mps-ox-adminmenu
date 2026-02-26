@@ -97,9 +97,9 @@ const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submi
 
     <Separator className="my-2" />
 
-    <form className="flex-grow overflow-y-scroll min-h-0 pr-2">
-      <FieldSet>
-        <div className="grid grid-cols-2 gap-4 max-h-full">
+    <form className="flex-grow min-h-0 pr-2"> 
+      <FieldSet className="h-full">
+        <div className="grid grid-cols-2 gap-4 h-[500px]">
           <FieldGroup>
             <h2 className="text-lg">General Details</h2>
 
@@ -149,21 +149,16 @@ const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submi
             </Field>
           </FieldGroup>
 
-          <FieldGroup>
-            <div className="flex flex-row justify-between items-center">
+          <FieldGroup className="flex flex-col min-h-0">
+            <div className="flex flex-row justify-between items-center mb-4 shrink-0">
               <h2 className="text-lg">Grades</h2>
-
-              <Button
-                type="button"
-                variant="outline"
-                onClick={handleAddGrade}
-              >
+              <Button type="button" variant="outline" onClick={handleAddGrade}>
                 <LucidePlusCircle className="w-4 h-4 mr-2" />
                 Add New Rank
               </Button>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 overflow-y-auto pr-2 custom-scrollbar">
               {formData.grades.map((grade, index) => (
                 <div key={grade.id} className="p-4 border border-200 rounded-lg shadow-sm">
                   <div className="flex justify-between items-center mb-3">
