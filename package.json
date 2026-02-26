@@ -5,13 +5,16 @@
 	"license": "AGPL-3.0",
 	"description": "A simple admin menu for ox_core to handle players, jobs, etc....",
 	"type": "module",
+  "workspaces": [
+    "web"
+  ],
 	"scripts": {
-		"web:dev": "cd web && pnpm dev",
-		"build": "node scripts/build.js",
-		"watch": "node scripts/build.js --watch",
-		"format": "pnpm biome format --write",
-		"lint": "pnpm biome lint --write"
-	},
+    "web:dev": "bun --filter web dev",
+    "build": "bun scripts/build.js",
+    "watch": "bun run watch & bun run web:dev",
+    "format": "bun biome format --write .",
+    "lint": "bun biome lint --write ."
+  },
 	"keywords": [
 		"fivem",
 		"ox_core"
@@ -25,8 +28,10 @@
 		"@citizenfx/client": "latest",
 		"@citizenfx/server": "latest",
 		"@jgoz/esbuild-plugin-typecheck": "^4.0.3",
-		"@types/node": "^22.13.9",
 		"@vitejs/plugin-react": "^4.3.4",
+    "@types/node": "^22.13.13",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
 		"esbuild": "^0.25.0",
 		"typescript": "^5.8.2"
 	},
