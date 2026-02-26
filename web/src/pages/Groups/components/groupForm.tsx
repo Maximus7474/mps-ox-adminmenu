@@ -196,9 +196,10 @@ const GroupForm: React.FC<GroupFormProps> = ({ title, group = defaultForm, submi
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="none">None</SelectItem>
-                          <SelectItem value="1">Step 1</SelectItem>
-                          <SelectItem value="2">Step 2</SelectItem>
-                          <SelectItem value="3">Step 3</SelectItem>
+                          <SelectItem value="viewer">Viewer</SelectItem>
+                          <SelectItem value="contributor">Contributor</SelectItem>
+                          <SelectItem value="manager">Manager</SelectItem>
+                          <SelectItem value="owner">Owner</SelectItem>
                         </SelectContent>
                       </Select>
                     </Field>
