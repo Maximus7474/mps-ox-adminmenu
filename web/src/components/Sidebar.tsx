@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router';
-import { LayoutDashboard, Users, UserCog, Settings, Sun, Moon, ChevronsUpDown } from 'lucide-react';
+import { LayoutDashboard, Users, UserCog, Settings, Sun, Moon } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -12,7 +12,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from './ui/sidebar';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { useTheme } from '../providers/ThemeProvider';
 
 export const menuItems = [
@@ -36,8 +35,8 @@ export function AppSidebar() {
                   <Settings className='size-4' />
                 </div>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-semibold'>FiveM Admin</span>
-                  <span className='truncate text-xs text-muted-foreground'>v1.0.2</span>
+                  <span className='truncate font-semibold'>Ox Admin</span>
+                  <span className='truncate text-xs text-muted-foreground'>v0.0.0</span>
                 </div>
               </div>
             </SidebarMenuButton>

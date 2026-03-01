@@ -29,7 +29,7 @@ export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   }, []);
 
   useNuiEvent('setVisible', (data: { visible?: boolean }) => {
-    console.log('Received setVisible')
+    console.log('Received setVisible');
     setVisible(data.visible || false);
   });
 
@@ -48,15 +48,17 @@ export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     <VisibilityContext.Provider value={{ visible, setVisible }}>
       <AnimatePresence>
         {visible && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            style={{ height: '100vh', width: '100vw' }}
-          >
-            {children}
-          </motion.div>
+          <div className='fixed inset-0 flex items-center justify-center bg-black/20 px-10'>
+            <motion.div
+              initial={{ opacity: 0, y: 50, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 50, scale: 0.95 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className='w-full max-w-[1400px] h-[85vh] shadow-2xl rounded-xl border border-border/50 bg-background overflow-hidden flex flex-row'
+            >
+              {children}
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </VisibilityContext.Provider>

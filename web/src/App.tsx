@@ -7,9 +7,7 @@ import { VisibilityProvider } from './providers/VisibilityProvider';
 import './styles/index.css';
 import { debugData } from './utils/debugData';
 
-debugData([
-  { action: 'setVisible', data: { visible: true } }
-]);
+debugData([{ action: 'setVisible', data: { visible: true } }]);
 
 function App() {
   return (
