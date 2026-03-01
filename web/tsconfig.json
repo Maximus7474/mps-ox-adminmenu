@@ -9,7 +9,8 @@
     "skipLibCheck": true,
     "paths": {
       "~/*": ["../../*"],
-      "@common/*": ["../src/common/*"]
+      "@common/*": ["../src/common/*"],
+      "@/": ["./src/"]
     },
     "types": ["@types/node", "./nui.d.ts"],
 

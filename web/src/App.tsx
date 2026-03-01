@@ -1,44 +1,24 @@
-import { useState } from 'react';
-import { isEnvBrowser } from './utils/misc';
-import { useNuiEvent } from './hooks/useNuiEvent';
-import { fetchNui } from './utils/fetchNui';
+import { RouterProvider } from 'react-router';
+import { router } from './routes';
+import { Toaster } from './components/ui/sonner';
+import { ThemeProvider } from './providers/ThemeProvider';
+import { VisibilityProvider } from './providers/VisibilityProvider';
+
+import './styles/index.css';
+import { debugData } from './utils/debugData';
+
+debugData([
+  { action: 'setVisible', data: { visible: true } }
+]);
 
 function App() {
-  const [visible, setVisible] = useState(isEnvBrowser());
-  const [count, setCount] = useState(0);
-
-  useNuiEvent('setVisible', (data: { visible?: boolean }) => {
-    setVisible(data.visible || false);
-  });
-
-  function handleHideModal() {
-    setVisible(false);
-    void fetchNui('exit');
-  }
-
   return (
-    <>
-      {visible && (
-        <div className='boilerplate-wrapper'>
-          <div className='boilerplate-modal-container'>
-            <h3>Boilerplate Modal</h3>
-            <p>Count: {count}</p>
-
-            <div>
-              <button type='button' onClick={() => setCount((prev) => ++prev)}>
-                Increment
-              </button>
-              <button type='button' onClick={() => setCount((prev) => --prev)}>
-                Decrement
-              </button>
-              <button type='button' onClick={() => handleHideModal()}>
-                Hide modal
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+    <ThemeProvider defaultTheme='dark'>
+      <VisibilityProvider>
+        <RouterProvider router={router} />
+        <Toaster />
+      </VisibilityProvider>
+    </ThemeProvider>
   );
 }
 
