@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
-import { Separator } from "../components/ui/separator";
 import { type PlayerShortInfo } from "@common/types/players";
 import { fetchNui } from "../utils/fetchNui";
 import { ButtonGroup } from "../components/ui/button-group";
 import { Button } from "../components/ui/button";
 import { debugPlayerList } from "../debugdata";
+import { useNavigate } from "react-router-dom";
 
 const maxplayers = 48, availablestaff = 5;
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   const [playerlist, setPlayerList] = useState<PlayerShortInfo[]>([]);
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const Home: React.FC = () => {
 
                     <ButtonGroup>
                       <Button variant='destructive'>Kick</Button>
-                      <Button variant='outline'>View</Button>
+                      <Button variant='outline' onClick={() => navigate(`/players/view/${player.source}`)}>View</Button>
                     </ButtonGroup>
                   </div>
                 </div>
