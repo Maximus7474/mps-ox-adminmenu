@@ -1,45 +1,43 @@
 {
-	"name": "mps-ox-adminmenu",
-	"author": "Maximus7474",
+	"name": "fivem-typescript-boilerplate",
+	"author": "Overextended",
 	"version": "0.0.0",
-	"license": "AGPL-3.0",
-	"description": "A simple admin menu for ox_core to handle players, jobs, etc....",
+	"license": "",
+	"description": "",
 	"type": "module",
-  "workspaces": [
-    "web"
-  ],
 	"scripts": {
-    "web:dev": "bun --filter web dev",
-    "build": "bun scripts/build.js",
-    "watch": "bun run watch & bun run web:dev",
-    "format": "bun biome format --write .",
-    "lint": "bun biome lint --write ."
-  },
+		"web:dev": "cd web && vite dev",
+		"build": "node scripts/build.js",
+		"watch": "node scripts/build.js --watch",
+		"format": "pnpm biome format --write",
+		"lint": "pnpm biome lint --write"
+	},
 	"keywords": [
-		"fivem",
-		"ox_core"
+		"fivem"
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Maximus7474/mps-ox-adminmenu.git"
+		"url": "https://github.com/communityox/fivem-typescript-boilerplate.git"
 	},
-	"bugs": "https://github.com/Maximus7474/mps-ox-adminmenu/issues",
+	"bugs": "https://github.com/communityox/fivem-typescript-boilerplate/issues",
 	"devDependencies": {
 		"@citizenfx/client": "latest",
 		"@citizenfx/server": "latest",
 		"@jgoz/esbuild-plugin-typecheck": "^4.0.3",
+		"@communityox/fx-utils": "^0.0.4",
+		"@types/node": "^22.13.9",
+		"@types/react": "^18.3.18",
+		"@types/react-dom": "^18.3.5",
 		"@vitejs/plugin-react": "^4.3.4",
-    "@types/node": "^22.13.13",
-    "@typescript-eslint/eslint-plugin": "^8.28.0",
-    "@typescript-eslint/parser": "^8.28.0",
 		"esbuild": "^0.25.0",
-		"typescript": "^5.8.2"
+		"typescript": "^5.8.2",
+		"vite": "^5.4.14"
 	},
 	"dependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@communityox/fx-utils": "^0.0.4",
-		"@communityox/ox_core": "^1.5.8",
-		"@communityox/ox_lib": "^3.31.4",
-		"@nativewrappers/fivem": "latest"
+		"@nativewrappers/fivem": "latest",
+		"@communityox/ox_lib": "latest",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
 	}
 }

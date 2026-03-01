@@ -31,7 +31,7 @@ createBuilder(
       name: 'client',
       options: {
         platform: 'browser',
-        target: ['es2021'], 
+        target: ['es2021'],
         format: 'iife',
         dropLabels: [...dropLabels, '$SERVER'],
       },
@@ -50,8 +50,8 @@ createBuilder(
       },
     });
 
-    if (web && !watch) await exec("cd ./web && pnpm build");
+    if (web && !watch) await exec("cd ./web && vite build");
   }
 );
 
-if (web && watch) await exec("cd ./web && pnpm build --watch");
+if (web && watch) await exec("cd ./web && vite build --watch");
