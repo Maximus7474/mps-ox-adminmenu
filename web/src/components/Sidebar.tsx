@@ -68,34 +68,18 @@ export function AppSidebar() {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size='lg' className='p-0'>
-              <DropdownMenu>
-                <DropdownMenuTrigger className='flex h-full w-full items-center gap-2 px-2'>
-                  <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-accent text-accent-foreground'>
-                    {theme === 'light' ? <Sun className='size-4' /> : <Moon className='size-4' />}
-                  </div>
-                  <div className='grid flex-1 text-left text-sm leading-tight'>
-                    <span className='truncate font-semibold'>Appearance</span>
-                    <span className='truncate text-xs capitalize'>{theme} mode</span>
-                  </div>
-                  <ChevronsUpDown className='ml-auto size-4 opacity-50' />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  className='w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg'
-                  side='bottom'
-                  align='end'
-                  sideOffset={4}
-                >
-                  <DropdownMenuItem onClick={() => setTheme('light')}>
-                    <Sun className='mr-2 size-4' />
-                    <span>Light</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme('dark')}>
-                    <Moon className='mr-2 size-4' />
-                    <span>Dark</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+            <SidebarMenuButton
+              size='lg'
+              className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            >
+              <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-accent text-accent-foreground'>
+                {theme === 'light' ? <Sun className='size-4' /> : <Moon className='size-4' />}
+              </div>
+              <div className='grid flex-1 text-left text-sm leading-tight'>
+                <span className='truncate font-semibold'>Appearance</span>
+                <span className='truncate text-xs capitalize'>{theme} mode</span>
+              </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
