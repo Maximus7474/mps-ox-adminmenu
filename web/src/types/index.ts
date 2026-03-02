@@ -40,6 +40,7 @@ export interface Group {
   label: string;
   description: string;
   memberCount: number;
+  bankAccount?: number;
   leader?: string;
   members: GroupMember[];
   grades: GroupGrade[];
@@ -54,7 +55,7 @@ export interface GroupGrade {
 export interface GroupMember {
   characterId: string;
   characterName: string;
-  playerId: string;
+  userId: number;
   playerName: string;
   rank: string;
   joinedAt: Date;
@@ -62,7 +63,7 @@ export interface GroupMember {
 
 export interface PlayerNote {
   id: string;
-  playerId: string;
+  userId: number;
   author: string;
   content: string;
   createdAt: Date;
@@ -70,7 +71,7 @@ export interface PlayerNote {
 
 export interface Ban {
   id: string;
-  playerId: string;
+  userId: number;
   reason: string;
   bannedBy: string;
   bannedAt: Date;
@@ -81,7 +82,7 @@ export interface Ban {
 
 export interface Sanction {
   id: string;
-  playerId: string;
+  userId: number;
   type: 'warning' | 'kick' | 'temp_ban';
   reason: string;
   issuedBy: string;
