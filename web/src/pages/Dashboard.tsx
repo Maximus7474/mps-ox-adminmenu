@@ -2,7 +2,7 @@ import { Users, Shield, Activity, UserCheck } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table';
-import { mockPlayers } from '../lib/mock-data';
+import { mockPlayers } from '../utils/mock-data';
 
 export function Dashboard() {
   const onlinePlayers = mockPlayers.filter((p) => p.isOnline);

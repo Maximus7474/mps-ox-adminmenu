@@ -216,6 +216,32 @@ export const mockPlayers: Player[] = [
     bans: [],
     sanctions: [],
   },
+  {
+    id: 'p6',
+    name: 'Yeet',
+    steamId: 'steam:110000107dh5ff8',
+    licenseId: 'license:e5f6g7h8i9j0',
+    isOnline: true,
+    isStaff: false,
+    firstJoined: new Date('2020-06-12'),
+    lastSeen: new Date(),
+    characters: [
+      {
+        id: 'c8',
+        name: 'Some Random Dev',
+        playerId: 'p6',
+        identifier: 'char:p6c1',
+        job: 'unemployed',
+        money: 2000,
+        bankMoney: 32000,
+        lastPlayed: new Date(),
+        disabled: false,
+      },
+    ],
+    notes: [],
+    bans: [],
+    sanctions: [],
+  },
 ];
 
 export const mockGroups: Group[] = [

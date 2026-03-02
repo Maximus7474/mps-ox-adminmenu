@@ -18,7 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Switch } from '../components/ui/switch';
 import { Input } from '../components/ui/input';
-import { mockPlayers } from '../lib/mock-data';
+import { mockPlayers } from '../utils/mock-data';
 import { Player } from '../types';
 
 export function PlayerDetails() {
