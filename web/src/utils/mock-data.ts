@@ -2,22 +2,21 @@ import { Player, Group } from '../types';
 
 export const mockPlayers: Player[] = [
   {
-    id: 'p1',
+    id: 1,
     name: 'JohnDoe',
     steamId: 'steam:110000103fd1bb4',
     discordId: 'discord:293847562938475629',
     licenseId: 'license:a1b2c3d4e5f6',
     isOnline: true,
     isStaff: true,
-    activeCharacter: 'c1',
+    activeCharacter: 101,
     firstJoined: new Date('2024-01-15'),
     lastSeen: new Date(),
     characters: [
       {
-        id: 'c1',
+        id: 101,
         name: 'John Smith',
-        playerId: 'p1',
-        identifier: 'char:p1c1',
+        stateId: 'AXJ92L',
         activeGroup: 'police',
         groups: [
           { name: 'police', label: 'LSPD', type: 'job' },
@@ -30,10 +29,9 @@ export const mockPlayers: Player[] = [
         disabled: false,
       },
       {
-        id: 'c2',
+        id: 102,
         name: 'Johnny Dark',
-        playerId: 'p1',
-        identifier: 'char:p1c2',
+        stateId: 'KOP83M',
         activeGroup: 'ballas',
         groups: [{ name: 'ballas', label: 'Ballas', type: 'gang' }],
         money: 2500,
@@ -45,7 +43,7 @@ export const mockPlayers: Player[] = [
     notes: [
       {
         id: 'n1',
-        playerId: 'p1',
+        userId: 1,
         author: 'AdminSteve',
         content: 'Great RP, promoted to senior officer',
         createdAt: new Date('2026-02-15'),
@@ -55,21 +53,20 @@ export const mockPlayers: Player[] = [
     sanctions: [],
   },
   {
-    id: 'p2',
+    id: 2,
     name: 'AlexGaming',
     steamId: 'steam:110000104ae2cc5',
     licenseId: 'license:b2c3d4e5f6g7',
     isOnline: true,
     isStaff: false,
-    activeCharacter: 'c3',
+    activeCharacter: 201,
     firstJoined: new Date('2024-03-20'),
     lastSeen: new Date(),
     characters: [
       {
-        id: 'c3',
+        id: 201,
         name: 'Alex Rodriguez',
-        playerId: 'p2',
-        identifier: 'char:p2c1',
+        stateId: 'VNR29P',
         groups: [{ name: 'mechanic', label: 'Mechanic', type: 'job' }],
         money: 3200,
         bankMoney: 45000,
@@ -82,7 +79,7 @@ export const mockPlayers: Player[] = [
     sanctions: [
       {
         id: 's1',
-        playerId: 'p2',
+        userId: 2,
         type: 'warning',
         reason: 'Minor RDM incident',
         issuedBy: 'AdminSteve',
@@ -91,7 +88,7 @@ export const mockPlayers: Player[] = [
     ],
   },
   {
-    id: 'p3',
+    id: 3,
     name: 'SarahPlays',
     steamId: 'steam:110000105bf3dd6',
     discordId: 'discord:384756291847562918',
@@ -102,10 +99,9 @@ export const mockPlayers: Player[] = [
     lastSeen: new Date('2026-02-28'),
     characters: [
       {
-        id: 'c4',
+        id: 301,
         name: 'Sarah Connor',
-        playerId: 'p3',
-        identifier: 'char:p3c1',
+        stateId: 'WQZ15R',
         activeGroup: 'ems',
         groups: [{ name: 'ems', label: 'EMS', type: 'job' }],
         money: 7800,
@@ -114,10 +110,9 @@ export const mockPlayers: Player[] = [
         disabled: false,
       },
       {
-        id: 'c5',
+        id: 302,
         name: 'Sarah Jones',
-        playerId: 'p3',
-        identifier: 'char:p3c2',
+        stateId: 'PLM09S',
         groups: [{ name: 'lawyer', label: 'Lawyer', type: 'job' }],
         money: 12000,
         bankMoney: 350000,
@@ -128,7 +123,7 @@ export const mockPlayers: Player[] = [
     notes: [
       {
         id: 'n2',
-        playerId: 'p3',
+        userId: 3,
         author: 'AdminMike',
         content: 'Staff member - handles support tickets',
         createdAt: new Date('2024-02-15'),
@@ -138,7 +133,7 @@ export const mockPlayers: Player[] = [
     sanctions: [],
   },
   {
-    id: 'p4',
+    id: 4,
     name: 'BadPlayer123',
     steamId: 'steam:110000106cg4ee7',
     licenseId: 'license:d4e5f6g7h8i9',
@@ -148,11 +143,10 @@ export const mockPlayers: Player[] = [
     lastSeen: new Date('2026-01-15'),
     characters: [
       {
-        id: 'c6',
+        id: 401,
         name: 'Random Name',
-        playerId: 'p4',
-        identifier: 'char:p4c1',
-        groups: [], // Unemployed / No groups
+        stateId: 'BHG66X',
+        groups: [],
         money: 500,
         bankMoney: 1000,
         lastPlayed: new Date('2026-01-15'),
@@ -162,7 +156,7 @@ export const mockPlayers: Player[] = [
     notes: [
       {
         id: 'n3',
-        playerId: 'p4',
+        userId: 4,
         author: 'AdminSteve',
         content: 'Multiple rule violations, banned permanently',
         createdAt: new Date('2026-01-15'),
@@ -171,7 +165,7 @@ export const mockPlayers: Player[] = [
     bans: [
       {
         id: 'b1',
-        playerId: 'p4',
+        userId: 4,
         reason: 'Repeated RDM, toxicity, fail RP',
         bannedBy: 'AdminSteve',
         bannedAt: new Date('2026-01-15'),
@@ -182,7 +176,7 @@ export const mockPlayers: Player[] = [
     sanctions: [
       {
         id: 's2',
-        playerId: 'p4',
+        userId: 4,
         type: 'warning',
         reason: 'RDM',
         issuedBy: 'AdminMike',
@@ -190,67 +184,13 @@ export const mockPlayers: Player[] = [
       },
       {
         id: 's3',
-        playerId: 'p4',
+        userId: 4,
         type: 'kick',
         reason: 'Continued RDM',
         issuedBy: 'AdminSteve',
         issuedAt: new Date('2026-01-05'),
       },
     ],
-  },
-  {
-    id: 'p5',
-    name: 'MikeRP',
-    steamId: 'steam:110000107dh5ff8',
-    licenseId: 'license:e5f6g7h8i9j0',
-    isOnline: true,
-    isStaff: false,
-    activeCharacter: 'c7',
-    firstJoined: new Date('2024-06-12'),
-    lastSeen: new Date(),
-    characters: [
-      {
-        id: 'c7',
-        name: 'Mike Johnson',
-        playerId: 'p5',
-        identifier: 'char:p5c1',
-        groups: [{ name: 'taxi', label: 'Downtown Cab Co', type: 'job' }],
-        money: 1800,
-        bankMoney: 32000,
-        lastPlayed: new Date(),
-        disabled: false,
-      },
-    ],
-    notes: [],
-    bans: [],
-    sanctions: [],
-  },
-  {
-    id: 'p6',
-    name: 'Yeet',
-    steamId: 'steam:110000107dh5ff8',
-    licenseId: 'license:e5f6g7h8i9j0',
-    isOnline: true,
-    isStaff: false,
-    activeCharacter: 'c8',
-    firstJoined: new Date('2020-06-12'),
-    lastSeen: new Date(),
-    characters: [
-      {
-        id: 'c8',
-        name: 'Some Random Dev',
-        playerId: 'p6',
-        identifier: 'char:p6c1',
-        groups: [],
-        money: 2000,
-        bankMoney: 32000,
-        lastPlayed: new Date(),
-        disabled: false,
-      },
-    ],
-    notes: [],
-    bans: [],
-    sanctions: [],
   },
 ];
 
@@ -262,6 +202,7 @@ export const mockGroups: Group[] = [
     label: 'Los Santos Police Department',
     description: 'Law enforcement organization protecting the city',
     memberCount: 8,
+    bankAccount: 250000,
     leader: 'John Smith',
     createdAt: new Date('2024-01-01'),
     grades: [
@@ -273,9 +214,9 @@ export const mockGroups: Group[] = [
     ],
     members: [
       {
-        characterId: 'c1',
+        characterId: '101',
         characterName: 'John Smith',
-        playerId: 'p1',
+        userId: 1,
         playerName: 'JohnDoe',
         rank: 'Chief',
         joinedAt: new Date('2024-01-15'),
@@ -289,6 +230,7 @@ export const mockGroups: Group[] = [
     label: 'Ballas Gang',
     description: 'Street gang operating in Grove Street area',
     memberCount: 12,
+    bankAccount: 45000,
     leader: 'Johnny Dark',
     createdAt: new Date('2024-01-01'),
     grades: [
@@ -300,9 +242,9 @@ export const mockGroups: Group[] = [
     ],
     members: [
       {
-        characterId: 'c2',
+        characterId: '102',
         characterName: 'Johnny Dark',
-        playerId: 'p1',
+        userId: 1,
         playerName: 'JohnDoe',
         rank: 'Boss',
         joinedAt: new Date('2024-02-01'),
@@ -316,6 +258,7 @@ export const mockGroups: Group[] = [
     label: 'Emergency Medical Services',
     description: 'Medical professionals providing healthcare to the city',
     memberCount: 6,
+    bankAccount: 185000,
     leader: 'Sarah Connor',
     createdAt: new Date('2024-01-01'),
     grades: [
@@ -327,9 +270,9 @@ export const mockGroups: Group[] = [
     ],
     members: [
       {
-        characterId: 'c4',
+        characterId: '301',
         characterName: 'Sarah Connor',
-        playerId: 'p3',
+        userId: 3,
         playerName: 'SarahPlays',
         rank: 'Chief Medical Officer',
         joinedAt: new Date('2024-02-10'),
@@ -343,6 +286,7 @@ export const mockGroups: Group[] = [
     label: 'Mechanic Shop',
     description: 'Vehicle repair and customization services',
     memberCount: 5,
+    bankAccount: 75000,
     leader: 'Alex Rodriguez',
     createdAt: new Date('2024-01-01'),
     grades: [
@@ -353,9 +297,9 @@ export const mockGroups: Group[] = [
     ],
     members: [
       {
-        characterId: 'c3',
+        characterId: '201',
         characterName: 'Alex Rodriguez',
-        playerId: 'p2',
+        userId: 2,
         playerName: 'AlexGaming',
         rank: 'Shop Owner',
         joinedAt: new Date('2024-03-25'),
@@ -369,6 +313,7 @@ export const mockGroups: Group[] = [
     label: 'Los Santos Vagos',
     description: 'Street gang controlling the south side',
     memberCount: 10,
+    bankAccount: 12000,
     createdAt: new Date('2024-01-01'),
     grades: [
       { label: 'Pequeno', accountRole: 'none' },
@@ -382,8 +327,9 @@ export const mockGroups: Group[] = [
     name: 'security',
     type: 'job',
     label: 'Gruppe Sechs',
-    description: 'Security company specialising in being robbed in armoured vehicles.',
+    description: 'Security company specializing in being robbed in armored vehicles.',
     memberCount: 3,
+    bankAccount: 500000,
     createdAt: new Date('2024-01-01'),
     grades: [
       { label: 'Guard', accountRole: 'viewer' },
@@ -397,8 +343,9 @@ export const mockGroups: Group[] = [
     name: 'firedepartment',
     type: 'job',
     label: 'Los Santos Fire Department',
-    description: 'Rescue professionals fighting fires, performing rescues.',
+    description: 'Rescue professionals fighting fires and performing rescues.',
     memberCount: 3,
+    bankAccount: 120000,
     createdAt: new Date('2024-01-01'),
     grades: [
       { label: 'Probationary', accountRole: 'none' },
