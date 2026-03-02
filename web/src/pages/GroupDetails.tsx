@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router';
-import { ArrowLeft, Edit, Shield, Users } from 'lucide-react';
+import { ArrowLeft, Edit, Shield, Users, Wallet } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
@@ -74,24 +74,35 @@ export function GroupDetails() {
                 <CardTitle className='text-sm font-medium'>Group Overview</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className='flex items-center justify-around py-2'>
+                <div className={`grid items-center py-2 ${group.bankAccount ? 'grid-cols-3' : 'grid-cols-2'}`}>
+                  
                   <div className='text-center'>
                     <div className='flex items-center justify-center gap-2 text-muted-foreground mb-1'>
                       <Users className='size-4' />
                       <span className='text-xs font-semibold uppercase tracking-wider'>Members</span>
                     </div>
-                    <p className='text-3xl font-bold'>{group.memberCount}</p>
+                    <p className='text-2xl font-bold'>{group.memberCount}</p>
                   </div>
 
-                  <div className='h-12 w-px bg-border' />
-
-                  <div className='text-center'>
+                  <div className={`text-center ${group.bankAccount ? 'border-x' : 'border-l'} border-border`}>
                     <div className='flex items-center justify-center gap-2 text-muted-foreground mb-1'>
                       <Shield className='size-4' />
                       <span className='text-xs font-semibold uppercase tracking-wider'>Ranks</span>
                     </div>
-                    <p className='text-3xl font-bold'>{group.grades.length}</p>
+                    <p className='text-2xl font-bold'>{group.grades.length}</p>
                   </div>
+
+                  {group.bankAccount && (
+                    <div className='text-center'>
+                      <div className='flex items-center justify-center gap-2 text-muted-foreground mb-1'>
+                        <Wallet className='size-4' />
+                        <span className='text-xs font-semibold uppercase tracking-wider'>Bank</span>
+                      </div>
+                      <p className='text-2xl font-bold'>
+                        ${group.bankAccount.toLocaleString()}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -115,7 +126,7 @@ export function GroupDetails() {
                 </div>
                 <div className='flex justify-between items-center'>
                   <span className='text-muted-foreground'>Created On</span>
-                  <span>{group.createdAt.toLocaleDateString()}</span>
+                  <span className='font-medium'>{group.createdAt.toLocaleDateString()}</span>
                 </div>
               </CardContent>
             </Card>
