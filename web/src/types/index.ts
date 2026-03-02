@@ -36,7 +36,13 @@ export interface Group {
   memberCount: number;
   leader?: string;
   members: GroupMember[];
+  grades: GroupGrade[];
   createdAt: Date;
+}
+
+export interface GroupGrade {
+  label: string;
+  accountRole: 'none' | 'viewer' | 'contributor' | 'manager' | 'owner';
 }
 
 export interface GroupMember {
