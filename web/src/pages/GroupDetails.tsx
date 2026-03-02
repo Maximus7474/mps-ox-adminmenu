@@ -5,6 +5,7 @@ import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table';
 import { mockGroups } from '../utils/mock-data';
+import { ScrollArea } from '../components/ui/scroll-area';
 
 export function GroupDetails() {
   const { groupId } = useParams();
@@ -96,28 +97,30 @@ export function GroupDetails() {
         </CardHeader>
         <CardContent>
           {group.members.length > 0 ? (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Character</TableHead>
-                  <TableHead>Player</TableHead>
-                  <TableHead>Rank</TableHead>
-                  <TableHead>Joined</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {group.members.map((member) => (
-                  <TableRow key={member.characterId}>
-                    <TableCell>{member.characterName}</TableCell>
-                    <TableCell>{member.playerName}</TableCell>
-                    <TableCell>
-                      <Badge variant='outline'>{member.rank}</Badge>
-                    </TableCell>
-                    <TableCell>{member.joinedAt.toLocaleDateString()}</TableCell>
+            <ScrollArea className="h-[45vh]">
+              <Table isScrollable>
+                <TableHeader className='sticky top-0 bg-background'>
+                  <TableRow>
+                    <TableHead>Character</TableHead>
+                    <TableHead>Player</TableHead>
+                    <TableHead>Rank</TableHead>
+                    <TableHead>Joined</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {group.members.map((member) => (
+                    <TableRow key={member.characterId}>
+                      <TableCell>{member.characterName}</TableCell>
+                      <TableCell>{member.playerName}</TableCell>
+                      <TableCell>
+                        <Badge variant='outline'>{member.rank}</Badge>
+                      </TableCell>
+                      <TableCell>{member.joinedAt.toLocaleDateString()}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </ScrollArea>
           ) : (
             <div className='py-12 text-center text-muted-foreground'>No members to display</div>
           )}

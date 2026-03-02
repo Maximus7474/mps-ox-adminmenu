@@ -17,9 +17,9 @@ import {
 import { Label } from '../components/ui/label';
 import { Textarea } from '../components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table';
 import { mockGroups } from '../utils/mock-data';
 import { Group } from '../types';
+import { ScrollArea } from '../components/ui/scroll-area';
 
 export function Groups() {
   const navigate = useNavigate();
@@ -139,7 +139,6 @@ export function Groups() {
         </Dialog>
       </div>
 
-      {/* Search */}
       <div className='flex items-center gap-2'>
         <Search className='size-4 text-muted-foreground' />
         <Input
@@ -150,34 +149,35 @@ export function Groups() {
         />
       </div>
 
-      {/* Groups Grid */}
-      <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
-        {filteredGroups.map((group) => (
-          <Card
-            key={group.id}
-            className='cursor-pointer transition-colors hover:bg-accent'
-            onClick={() => navigate(`/groups/${group.id}`)}
-          >
-            <CardHeader>
-              <div className='flex items-start justify-between'>
-                <div className='flex-1'>
-                  <CardTitle>{group.label}</CardTitle>
-                  <CardDescription className='mt-1'>{group.name}</CardDescription>
+      <ScrollArea className="h-[58vh] pr-3">
+        <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
+          {filteredGroups.map((group) => (
+            <Card
+              key={group.id}
+              className='cursor-pointer transition-colors hover:bg-accent'
+              onClick={() => navigate(`/groups/${group.id}`)}
+            >
+              <CardHeader>
+                <div className='flex items-start justify-between'>
+                  <div className='flex-1'>
+                    <CardTitle>{group.label}</CardTitle>
+                    <CardDescription className='mt-1'>{group.name}</CardDescription>
+                  </div>
+                  <Badge variant={getGroupTypeColor(group.type)}>{group.type}</Badge>
                 </div>
-                <Badge variant={getGroupTypeColor(group.type)}>{group.type}</Badge>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className='mb-4 text-sm text-muted-foreground'>{group.description}</p>
-              <div className='flex items-center gap-2 text-sm'>
-                <Users className='size-4 text-muted-foreground' />
-                <span>{group.memberCount} members</span>
-              </div>
-              {group.leader && <div className='mt-2 text-sm text-muted-foreground'>Leader: {group.leader}</div>}
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+              </CardHeader>
+              <CardContent>
+                <p className='mb-4 text-sm text-muted-foreground'>{group.description}</p>
+                <div className='flex items-center gap-2 text-sm'>
+                  <Users className='size-4 text-muted-foreground' />
+                  <span>{group.memberCount} members</span>
+                </div>
+                {group.leader && <div className='mt-2 text-sm text-muted-foreground'>Leader: {group.leader}</div>}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </ScrollArea>
     </div>
   );
 }

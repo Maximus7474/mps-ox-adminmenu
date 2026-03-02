@@ -8,6 +8,7 @@ import { Input } from '../components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table';
 import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { mockPlayers } from '../utils/mock-data';
+import { ScrollArea } from '../components/ui/scroll-area';
 
 export function Players() {
   const navigate = useNavigate();
@@ -62,73 +63,75 @@ export function Players() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Player</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredPlayers.map((player) => (
-                <TableRow key={player.id} className='cursor-pointer' onClick={() => navigate(`/players/${player.id}`)}>
-                  <TableCell>
-                    <div>
-                      <div className='flex items-center gap-2'>
-                        {player.name}
-                        {player.isStaff && (
-                          <Badge variant='secondary'>
-                            <Shield className='mr-1 size-3' />
-                            Staff
+          <ScrollArea className="h-[45vh]">
+            <Table isScrollable>
+              <TableHeader className='sticky top-0 bg-background'>
+                <TableRow>
+                  <TableHead>Player</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredPlayers.map((player) => (
+                  <TableRow key={player.id} className='cursor-pointer' onClick={() => navigate(`/players/${player.id}`)}>
+                    <TableCell>
+                      <div>
+                        <div className='flex items-center gap-2'>
+                          {player.name}
+                          {player.isStaff && (
+                            <Badge variant='secondary'>
+                              <Shield className='mr-1 size-3' />
+                              Staff
+                            </Badge>
+                          )}
+                        </div>
+                        <div className='text-sm text-muted-foreground'>{player.steamId}</div>
+                        <div className='text-sm text-muted-foreground'>
+                          {player.characters.length} character{player.characters.length !== 1 ? 's' : ''}
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className='flex flex-col gap-1'>
+                        {player.isOnline && (
+                          <Badge variant='outline' className='w-fit'>
+                            <div className='mr-1 size-2 rounded-full bg-green-500' />
+                            Online
+                          </Badge>
+                        )}
+                        {player.bans.some((b) => b.isActive) && (
+                          <Badge variant='destructive' className='w-fit'>
+                            <Ban className='mr-1 size-3' />
+                            Banned
+                          </Badge>
+                        )}
+                        {player.sanctions.length > 0 && (
+                          <Badge variant='secondary' className='w-fit'>
+                            <AlertTriangle className='mr-1 size-3' />
+                            {player.sanctions.length} Sanction{player.sanctions.length !== 1 ? 's' : ''}
                           </Badge>
                         )}
                       </div>
-                      <div className='text-sm text-muted-foreground'>{player.steamId}</div>
-                      <div className='text-sm text-muted-foreground'>
-                        {player.characters.length} character{player.characters.length !== 1 ? 's' : ''}
-                      </div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className='flex flex-col gap-1'>
-                      {player.isOnline && (
-                        <Badge variant='outline' className='w-fit'>
-                          <div className='mr-1 size-2 rounded-full bg-green-500' />
-                          Online
-                        </Badge>
-                      )}
-                      {player.bans.some((b) => b.isActive) && (
-                        <Badge variant='destructive' className='w-fit'>
-                          <Ban className='mr-1 size-3' />
-                          Banned
-                        </Badge>
-                      )}
-                      {player.sanctions.length > 0 && (
-                        <Badge variant='secondary' className='w-fit'>
-                          <AlertTriangle className='mr-1 size-3' />
-                          {player.sanctions.length} Sanction{player.sanctions.length !== 1 ? 's' : ''}
-                        </Badge>
-                      )}
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Button
-                      variant='ghost'
-                      size='sm'
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`/players/${player.id}`);
-                      }}
-                    >
-                      View Details
-                      <ChevronRight className='ml-2 size-4' />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant='ghost'
+                        size='sm'
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/players/${player.id}`);
+                        }}
+                      >
+                        View Details
+                        <ChevronRight className='ml-2 size-4' />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </ScrollArea>
         </CardContent>
       </Card>
     </div>

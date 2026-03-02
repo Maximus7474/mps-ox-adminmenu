@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Badge } from '../components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table';
 import { mockPlayers } from '../utils/mock-data';
+import { ScrollArea } from '../components/ui/scroll-area';
 
 export function Dashboard() {
   const onlinePlayers = mockPlayers.filter((p) => p.isOnline);
@@ -17,7 +18,6 @@ export function Dashboard() {
         <p className='text-muted-foreground'>Overview of current server activity</p>
       </div>
 
-      {/* Stats Cards */}
       <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
         <Card>
           <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
@@ -64,75 +64,76 @@ export function Dashboard() {
         </Card>
       </div>
 
-      {/* Current Online Players */}
       <Card>
         <CardHeader>
           <CardTitle>Current Online Players</CardTitle>
           <CardDescription>Players currently connected to the server</CardDescription>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Player</TableHead>
-                <TableHead>Active Character</TableHead>
-                <TableHead>Job/Gang</TableHead>
-                <TableHead>Status</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {onlinePlayers.length === 0 ? (
+          <ScrollArea className="h-[32vh]">
+            <Table isScrollable>
+              <TableHeader className='sticky top-0 bg-background'>
                 <TableRow>
-                  <TableCell colSpan={4} className='text-center text-muted-foreground'>
-                    No players online
-                  </TableCell>
+                  <TableHead>Player</TableHead>
+                  <TableHead>Active Character</TableHead>
+                  <TableHead>Job/Gang</TableHead>
+                  <TableHead>Status</TableHead>
                 </TableRow>
-              ) : (
-                onlinePlayers.map((player) => {
-                  const activeChar = player.characters[0];
-                  return (
-                    <TableRow key={player.id}>
-                      <TableCell>
-                        <div className='flex items-center gap-2'>
-                          <div>
-                            <div>{player.name}</div>
-                            <div className='text-sm text-muted-foreground'>{player.steamId}</div>
+              </TableHeader>
+              <TableBody>
+                {onlinePlayers.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={4} className='text-center text-muted-foreground'>
+                      No players online
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  onlinePlayers.map((player) => {
+                    const activeChar = player.characters[0];
+                    return (
+                      <TableRow key={player.id}>
+                        <TableCell>
+                          <div className='flex items-center gap-2'>
+                            <div>
+                              <div>{player.name}</div>
+                              <div className='text-sm text-muted-foreground'>{player.steamId}</div>
+                            </div>
                           </div>
-                        </div>
-                      </TableCell>
-                      <TableCell>{activeChar ? activeChar.name : 'None'}</TableCell>
-                      <TableCell>
-                        <div className='flex flex-col gap-1'>
-                          {activeChar?.job && (
-                            <Badge variant='outline' className='w-fit'>
-                              {activeChar.job}
-                            </Badge>
-                          )}
-                          {activeChar?.gang && (
-                            <Badge variant='destructive' className='w-fit'>
-                              {activeChar.gang}
-                            </Badge>
-                          )}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className='flex items-center gap-2'>
-                          <div className='size-2 rounded-full bg-green-500' />
-                          <span className='text-sm'>Online</span>
-                          {player.isStaff && (
-                            <Badge variant='secondary' className='ml-2'>
-                              <Shield className='mr-1 size-3' />
-                              Staff
-                            </Badge>
-                          )}
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })
-              )}
-            </TableBody>
-          </Table>
+                        </TableCell>
+                        <TableCell>{activeChar ? activeChar.name : 'None'}</TableCell>
+                        <TableCell>
+                          <div className='flex flex-col gap-1'>
+                            {activeChar?.job && (
+                              <Badge variant='outline' className='w-fit'>
+                                {activeChar.job}
+                              </Badge>
+                            )}
+                            {activeChar?.gang && (
+                              <Badge variant='destructive' className='w-fit'>
+                                {activeChar.gang}
+                              </Badge>
+                            )}
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className='flex items-center gap-2'>
+                            <div className='size-2 rounded-full bg-green-500' />
+                            <span className='text-sm'>Online</span>
+                            {player.isStaff && (
+                              <Badge variant='secondary' className='ml-2'>
+                                <Shield className='mr-1 size-3' />
+                                Staff
+                              </Badge>
+                            )}
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })
+                )}
+              </TableBody>
+            </Table>
+          </ScrollArea>
         </CardContent>
       </Card>
     </div>
