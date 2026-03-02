@@ -76,7 +76,7 @@ export function Dashboard() {
                 <TableRow>
                   <TableHead>Player</TableHead>
                   <TableHead>Active Character</TableHead>
-                  <TableHead>Job/Gang</TableHead>
+                  <TableHead>Groups</TableHead>
                   <TableHead>Status</TableHead>
                 </TableRow>
               </TableHeader>
@@ -89,28 +89,30 @@ export function Dashboard() {
                   </TableRow>
                 ) : (
                   onlinePlayers.map((player) => {
-                    const activeChar = player.characters[0];
+                    const activeChar = player.characters.find((c) => c.id === player.activeCharacter);
+
                     return (
                       <TableRow key={player.id}>
                         <TableCell>
                           <div className='flex items-center gap-2'>
                             <div>
                               <div>{player.name}</div>
-                              <div className='text-sm text-muted-foreground'>{player.steamId}</div>
+                              <div className='text-sm text-muted-foreground'>{player.discordId}</div>
                             </div>
                           </div>
                         </TableCell>
                         <TableCell>{activeChar ? activeChar.name : 'None'}</TableCell>
                         <TableCell>
-                          <div className='flex flex-col gap-1'>
-                            {activeChar?.job && (
-                              <Badge variant='outline' className='w-fit'>
-                                {activeChar.job}
-                              </Badge>
-                            )}
-                            {activeChar?.gang && (
-                              <Badge variant='destructive' className='w-fit'>
-                                {activeChar.gang}
+                          <div className='flex flex-row gap-1'>
+                            {activeChar &&
+                              activeChar.groups.slice(0, 1).map((g) => (
+                                <Badge key={g.name} variant='outline' className='w-fit text-[10px]'>
+                                  {g.label}
+                                </Badge>
+                              ))}
+                            {activeChar && activeChar.groups.length > 1 && (
+                              <Badge variant='secondary' className='w-fit text-[10px]'>
+                                +{activeChar.groups.length - 1} more
                               </Badge>
                             )}
                           </div>
