@@ -22,7 +22,7 @@ export const mockPlayers: Player[] = [
         groups: [
           { name: 'police', label: 'LSPD', type: 'job' },
           { name: 'drivers', label: 'Driver Org', type: 'organization' },
-          { name: 'ballas', label: 'Ballas', type: 'gang' }
+          { name: 'ballas', label: 'Ballas', type: 'gang' },
         ],
         money: 5000,
         bankMoney: 125000,
@@ -35,9 +35,7 @@ export const mockPlayers: Player[] = [
         playerId: 'p1',
         identifier: 'char:p1c2',
         activeGroup: 'ballas',
-        groups: [
-          { name: 'ballas', label: 'Ballas', type: 'gang' }
-        ],
+        groups: [{ name: 'ballas', label: 'Ballas', type: 'gang' }],
         money: 2500,
         bankMoney: 15000,
         lastPlayed: new Date('2026-02-25'),
@@ -72,9 +70,7 @@ export const mockPlayers: Player[] = [
         name: 'Alex Rodriguez',
         playerId: 'p2',
         identifier: 'char:p2c1',
-        groups: [
-          { name: 'mechanic', label: 'Mechanic', type: 'job' }
-        ],
+        groups: [{ name: 'mechanic', label: 'Mechanic', type: 'job' }],
         money: 3200,
         bankMoney: 45000,
         lastPlayed: new Date(),
@@ -111,9 +107,7 @@ export const mockPlayers: Player[] = [
         playerId: 'p3',
         identifier: 'char:p3c1',
         activeGroup: 'ems',
-        groups: [
-          { name: 'ems', label: 'EMS', type: 'job' }
-        ],
+        groups: [{ name: 'ems', label: 'EMS', type: 'job' }],
         money: 7800,
         bankMoney: 220000,
         lastPlayed: new Date('2026-02-28'),
@@ -124,9 +118,7 @@ export const mockPlayers: Player[] = [
         name: 'Sarah Jones',
         playerId: 'p3',
         identifier: 'char:p3c2',
-        groups: [
-          { name: 'lawyer', label: 'Lawyer', type: 'job' }
-        ],
+        groups: [{ name: 'lawyer', label: 'Lawyer', type: 'job' }],
         money: 12000,
         bankMoney: 350000,
         lastPlayed: new Date('2026-02-27'),
@@ -222,9 +214,7 @@ export const mockPlayers: Player[] = [
         name: 'Mike Johnson',
         playerId: 'p5',
         identifier: 'char:p5c1',
-        groups: [
-          { name: 'taxi', label: 'Downtown Cab Co', type: 'job' }
-        ],
+        groups: [{ name: 'taxi', label: 'Downtown Cab Co', type: 'job' }],
         money: 1800,
         bankMoney: 32000,
         lastPlayed: new Date(),
