@@ -40,7 +40,7 @@ export function Groups() {
           <p className='text-muted-foreground'>Manage server groups, jobs, and gangs</p>
         </div>
         <Button onClick={() => navigate('/groups/new')}>
-          <Plus className="mr-2 size-4" />
+          <Plus className='mr-2 size-4' />
           Create Group
         </Button>
       </div>
@@ -55,40 +55,32 @@ export function Groups() {
         />
       </div>
 
-      <ScrollArea className="h-[58vh] pr-3">
+      <ScrollArea className='h-[58vh] pr-3'>
         <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
           {filteredGroups.map((group) => (
             <Card
               key={group.id}
-              className="cursor-pointer transition-colors hover:bg-accent flex flex-col h-full gap-2"
+              className='cursor-pointer transition-colors hover:bg-accent flex flex-col h-full gap-2'
               onClick={() => navigate(`/groups/${group.id}`)}
             >
               <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
+                <div className='flex items-start justify-between'>
+                  <div className='flex-1'>
                     <CardTitle>{group.label}</CardTitle>
-                    <CardDescription className="mt-1">{group.name}</CardDescription>
+                    <CardDescription className='mt-1'>{group.name}</CardDescription>
                   </div>
-                  <Badge variant={getGroupTypeColor(group.type)}>
-                    {group.type}
-                  </Badge>
+                  <Badge variant={getGroupTypeColor(group.type)}>{group.type}</Badge>
                 </div>
               </CardHeader>
-              <CardContent className="flex-1">
-                <p className="mb-4 text-sm text-muted-foreground">
-                  {group.description}
-                </p>
+              <CardContent className='flex-1'>
+                <p className='mb-4 text-sm text-muted-foreground'>{group.description}</p>
               </CardContent>
               <CardFooter className='flex flex-col items-start bottom-0'>
-                <div className="flex items-center gap-2 text-sm">
-                  <Users className="size-4 text-muted-foreground" />
+                <div className='flex items-center gap-2 text-sm'>
+                  <Users className='size-4 text-muted-foreground' />
                   <span>{group.memberCount} members</span>
                 </div>
-                {group.leader && (
-                  <div className="mt-2 text-sm text-muted-foreground">
-                    Leader: {group.leader}
-                  </div>
-                )}
+                {group.leader && <div className='mt-2 text-sm text-muted-foreground'>Leader: {group.leader}</div>}
               </CardFooter>
             </Card>
           ))}

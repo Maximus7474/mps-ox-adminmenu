@@ -55,15 +55,14 @@ export function GroupDetails() {
           </div>
         </div>
 
-        <Button variant="secondary" onClick={() => navigate(`/groups/${groupId}/edit`)}>
-          <Edit className="mr-2 size-4" />
+        <Button variant='secondary' onClick={() => navigate(`/groups/${groupId}/edit`)}>
+          <Edit className='mr-2 size-4' />
           Edit Group
         </Button>
       </div>
 
-      <ScrollArea className="h-[70vh] pr-4"> 
-        <div className="space-y-6 pt-2 pb-8">
-          
+      <ScrollArea className='h-[70vh] pr-4'>
+        <div className='space-y-6 pt-2 pb-8'>
           <div>
             <p className='text-foreground text-bold'>Description:</p>
             <p className='text-muted-foreground'>{group.description}</p>
@@ -71,51 +70,51 @@ export function GroupDetails() {
 
           <div className='grid gap-4 md:grid-cols-2 items-stretch'>
             <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Group Overview</CardTitle>
+              <CardHeader className='pb-2'>
+                <CardTitle className='text-sm font-medium'>Group Overview</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-around py-2">
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-2 text-muted-foreground mb-1">
-                      <Users className="size-4" />
-                      <span className="text-xs font-semibold uppercase tracking-wider">Members</span>
+                <div className='flex items-center justify-around py-2'>
+                  <div className='text-center'>
+                    <div className='flex items-center justify-center gap-2 text-muted-foreground mb-1'>
+                      <Users className='size-4' />
+                      <span className='text-xs font-semibold uppercase tracking-wider'>Members</span>
                     </div>
-                    <p className="text-3xl font-bold">{group.memberCount}</p>
+                    <p className='text-3xl font-bold'>{group.memberCount}</p>
                   </div>
 
-                  <div className="h-12 w-px bg-border" />
+                  <div className='h-12 w-px bg-border' />
 
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-2 text-muted-foreground mb-1">
-                      <Shield className="size-4" />
-                      <span className="text-xs font-semibold uppercase tracking-wider">Ranks</span>
+                  <div className='text-center'>
+                    <div className='flex items-center justify-center gap-2 text-muted-foreground mb-1'>
+                      <Shield className='size-4' />
+                      <span className='text-xs font-semibold uppercase tracking-wider'>Ranks</span>
                     </div>
-                    <p className="text-3xl font-bold">{group.grades.length}</p>
+                    <p className='text-3xl font-bold'>{group.grades.length}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">System Information</CardTitle>
+              <CardHeader className='pb-2'>
+                <CardTitle className='text-sm font-medium'>System Information</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-sm">
-                <div className="flex justify-between items-center border-b border-dashed pb-2">
-                  <span className="text-muted-foreground">Type</span>
-                  <Badge variant={getGroupTypeColor(group.type)} className="capitalize">
+              <CardContent className='space-y-3 text-sm'>
+                <div className='flex justify-between items-center border-b border-dashed pb-2'>
+                  <span className='text-muted-foreground'>Type</span>
+                  <Badge variant={getGroupTypeColor(group.type)} className='capitalize'>
                     {group.type}
                   </Badge>
                 </div>
-                <div className="flex justify-between items-center border-b border-dashed pb-2">
-                  <span className="text-muted-foreground">Registry Name</span>
-                  <code className="relative rounded bg-muted px-[0.3rem] py-[0.1rem] font-mono text-xs font-semibold">
+                <div className='flex justify-between items-center border-b border-dashed pb-2'>
+                  <span className='text-muted-foreground'>Registry Name</span>
+                  <code className='relative rounded bg-muted px-[0.3rem] py-[0.1rem] font-mono text-xs font-semibold'>
                     {group.name}
                   </code>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Created On</span>
+                <div className='flex justify-between items-center'>
+                  <span className='text-muted-foreground'>Created On</span>
                   <span>{group.createdAt.toLocaleDateString()}</span>
                 </div>
               </CardContent>
@@ -129,7 +128,7 @@ export function GroupDetails() {
             </CardHeader>
             <CardContent>
               {group.members.length > 0 ? (
-                <ScrollArea className="h-[35vh] pr-2">
+                <ScrollArea className='h-[35vh] pr-2'>
                   <Table isScrollable>
                     <TableHeader className='sticky top-0 bg-background'>
                       <TableRow>
@@ -142,7 +141,7 @@ export function GroupDetails() {
                     <TableBody>
                       {group.members.map((member) => (
                         <TableRow key={member.characterId}>
-                          <TableCell className="font-medium">{member.characterName}</TableCell>
+                          <TableCell className='font-medium'>{member.characterName}</TableCell>
                           <TableCell>{member.playerName}</TableCell>
                           <TableCell>
                             <Badge variant='outline'>{member.rank}</Badge>
@@ -162,9 +161,7 @@ export function GroupDetails() {
           <Card>
             <CardHeader>
               <CardTitle>Grades</CardTitle>
-              <CardDescription>
-                Rank hierarchy and permissions
-              </CardDescription>
+              <CardDescription>Rank hierarchy and permissions</CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
@@ -181,7 +178,7 @@ export function GroupDetails() {
                       <TableCell>{idx + 1}</TableCell>
                       <TableCell>{grade.label}</TableCell>
                       <TableCell>
-                        <Badge variant="outline" className="capitalize">
+                        <Badge variant='outline' className='capitalize'>
                           {grade.accountRole}
                         </Badge>
                       </TableCell>

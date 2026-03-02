@@ -4,21 +4,14 @@ import * as React from 'react';
 
 import { cn } from './utils';
 
-interface TableProps extends React.ComponentProps<"table"> {
+interface TableProps extends React.ComponentProps<'table'> {
   isScrollable?: boolean;
 }
 
 function Table({ className, isScrollable, ...props }: TableProps) {
   return (
-    <div
-      data-slot="table-container"
-      className={cn(!isScrollable && "relative w-full overflow-x-auto")}
-    >
-      <table
-        data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
-        {...props}
-      />
+    <div data-slot='table-container' className={cn(!isScrollable && 'relative w-full overflow-x-auto')}>
+      <table data-slot='table' className={cn('w-full caption-bottom text-sm', className)} {...props} />
     </div>
   );
 }

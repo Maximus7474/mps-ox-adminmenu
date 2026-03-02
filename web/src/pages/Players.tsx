@@ -63,7 +63,7 @@ export function Players() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ScrollArea className="h-[45vh]">
+          <ScrollArea className='h-[45vh]'>
             <Table isScrollable>
               <TableHeader className='sticky top-0 bg-background'>
                 <TableRow>
@@ -74,7 +74,11 @@ export function Players() {
               </TableHeader>
               <TableBody>
                 {filteredPlayers.map((player) => (
-                  <TableRow key={player.id} className='cursor-pointer' onClick={() => navigate(`/players/${player.id}`)}>
+                  <TableRow
+                    key={player.id}
+                    className='cursor-pointer'
+                    onClick={() => navigate(`/players/${player.id}`)}
+                  >
                     <TableCell>
                       <div>
                         <div className='flex items-center gap-2'>

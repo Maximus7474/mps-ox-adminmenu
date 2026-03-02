@@ -70,7 +70,7 @@ export function Dashboard() {
           <CardDescription>Players currently connected to the server</CardDescription>
         </CardHeader>
         <CardContent>
-          <ScrollArea className="h-[32vh]">
+          <ScrollArea className='h-[32vh]'>
             <Table isScrollable>
               <TableHeader className='sticky top-0 bg-background'>
                 <TableRow>
