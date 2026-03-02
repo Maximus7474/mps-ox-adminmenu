@@ -5,6 +5,7 @@ import { Groups } from './pages/Groups';
 import { GroupDetails } from './pages/GroupDetails';
 import { Players } from './pages/Players';
 import { PlayerDetails } from './pages/PlayerDetails';
+import { GroupForm } from './pages/GroupForm';
 
 export const router = createHashRouter([
   {
@@ -20,8 +21,16 @@ export const router = createHashRouter([
         Component: Groups,
       },
       {
+        path: 'groups/new',
+        Component: GroupForm,
+      },
+      {
         path: 'groups/:groupId',
         Component: GroupDetails,
+      },
+      {
+        path: 'groups/:groupId/edit',
+        Component: GroupForm,
       },
       {
         path: 'players',
