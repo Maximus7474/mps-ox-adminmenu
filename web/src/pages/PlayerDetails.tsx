@@ -23,9 +23,9 @@ import { Player } from '../types';
 import { ScrollArea } from '../components/ui/scroll-area';
 
 export function PlayerDetails() {
-  const { playerId } = useParams();
+  const { userId } = useParams();
   const navigate = useNavigate();
-  const [player, setPlayer] = useState<Player | null>(mockPlayers.find((p) => p.id === playerId) || null);
+  const [player, setPlayer] = useState<Player | null>(mockPlayers.find((p) => `${p.id}` === userId) || null);
   const [isBanDialogOpen, setIsBanDialogOpen] = useState(false);
   const [isSanctionDialogOpen, setIsSanctionDialogOpen] = useState(false);
   const [isNoteDialogOpen, setIsNoteDialogOpen] = useState(false);
@@ -59,7 +59,7 @@ export function PlayerDetails() {
   const handleBanPlayer = () => {
     const newBan = {
       id: `b${Date.now()}`,
-      playerId: player.id,
+      userId: player.id,
       reason: banForm.reason,
       bannedBy: 'CurrentAdmin',
       bannedAt: new Date(),
@@ -78,7 +78,7 @@ export function PlayerDetails() {
   const handleAddSanction = () => {
     const newSanction = {
       id: `s${Date.now()}`,
-      playerId: player.id,
+      userId: player.id,
       type: sanctionForm.type,
       reason: sanctionForm.reason,
       issuedBy: 'CurrentAdmin',
@@ -94,7 +94,7 @@ export function PlayerDetails() {
     if (!noteText.trim()) return;
     const newNote = {
       id: `n${Date.now()}`,
-      playerId: player.id,
+      userId: player.id,
       author: 'CurrentAdmin',
       content: noteText,
       createdAt: new Date(),
@@ -105,7 +105,7 @@ export function PlayerDetails() {
     setNoteText('');
   };
 
-  const handleToggleCharacter = (charId: string) => {
+  const handleToggleCharacter = (charId: number) => {
     const updatedChars = player.characters.map((char) =>
       char.id === charId ? { ...char, disabled: !char.disabled } : char,
     );
@@ -251,7 +251,7 @@ export function PlayerDetails() {
                         )}
                       </div>
                     </div>
-                    <CardDescription className='font-mono text-xs'>{char.identifier}</CardDescription>
+                    <CardDescription className='font-mono text-xs'>{char.stateId}</CardDescription>
                   </CardHeader>
 
                   <CardContent className='grid gap-6 text-sm'>

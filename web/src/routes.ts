@@ -37,7 +37,7 @@ export const router = createHashRouter([
         Component: Players,
       },
       {
-        path: 'players/:playerId',
+        path: 'players/:userId',
         Component: PlayerDetails,
       },
     ],
