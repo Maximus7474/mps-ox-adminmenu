@@ -3,12 +3,18 @@ export interface Character {
   name: string;
   playerId: string;
   identifier: string;
-  job: string;
-  gang?: string;
+  activeGroup?: string;
+  groups: CharacterGroup[];
   money: number;
   bankMoney: number;
   lastPlayed: Date;
   disabled: boolean;
+}
+
+export interface CharacterGroup {
+  name: string;
+  label: string;
+  type: string;
 }
 
 export interface Player {
@@ -17,6 +23,7 @@ export interface Player {
   steamId: string;
   discordId?: string;
   licenseId: string;
+  activeCharacter?: string;
   characters: Character[];
   isOnline: boolean;
   isStaff: boolean;

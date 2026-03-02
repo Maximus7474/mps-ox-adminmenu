@@ -1,4 +1,4 @@
-import { Player, Group, Character } from '../types';
+import { Player, Group } from '../types';
 
 export const mockPlayers: Player[] = [
   {
@@ -9,6 +9,7 @@ export const mockPlayers: Player[] = [
     licenseId: 'license:a1b2c3d4e5f6',
     isOnline: true,
     isStaff: true,
+    activeCharacter: 'c1',
     firstJoined: new Date('2024-01-15'),
     lastSeen: new Date(),
     characters: [
@@ -17,7 +18,12 @@ export const mockPlayers: Player[] = [
         name: 'John Smith',
         playerId: 'p1',
         identifier: 'char:p1c1',
-        job: 'police',
+        activeGroup: 'police',
+        groups: [
+          { name: 'police', label: 'LSPD', type: 'job' },
+          { name: 'drivers', label: 'Driver Org', type: 'organization' },
+          { name: 'ballas', label: 'Ballas', type: 'gang' }
+        ],
         money: 5000,
         bankMoney: 125000,
         lastPlayed: new Date(),
@@ -28,8 +34,10 @@ export const mockPlayers: Player[] = [
         name: 'Johnny Dark',
         playerId: 'p1',
         identifier: 'char:p1c2',
-        job: 'unemployed',
-        gang: 'ballas',
+        activeGroup: 'ballas',
+        groups: [
+          { name: 'ballas', label: 'Ballas', type: 'gang' }
+        ],
         money: 2500,
         bankMoney: 15000,
         lastPlayed: new Date('2026-02-25'),
@@ -55,6 +63,7 @@ export const mockPlayers: Player[] = [
     licenseId: 'license:b2c3d4e5f6g7',
     isOnline: true,
     isStaff: false,
+    activeCharacter: 'c3',
     firstJoined: new Date('2024-03-20'),
     lastSeen: new Date(),
     characters: [
@@ -63,7 +72,9 @@ export const mockPlayers: Player[] = [
         name: 'Alex Rodriguez',
         playerId: 'p2',
         identifier: 'char:p2c1',
-        job: 'mechanic',
+        groups: [
+          { name: 'mechanic', label: 'Mechanic', type: 'job' }
+        ],
         money: 3200,
         bankMoney: 45000,
         lastPlayed: new Date(),
@@ -99,7 +110,10 @@ export const mockPlayers: Player[] = [
         name: 'Sarah Connor',
         playerId: 'p3',
         identifier: 'char:p3c1',
-        job: 'doctor',
+        activeGroup: 'ems',
+        groups: [
+          { name: 'ems', label: 'EMS', type: 'job' }
+        ],
         money: 7800,
         bankMoney: 220000,
         lastPlayed: new Date('2026-02-28'),
@@ -110,7 +124,9 @@ export const mockPlayers: Player[] = [
         name: 'Sarah Jones',
         playerId: 'p3',
         identifier: 'char:p3c2',
-        job: 'lawyer',
+        groups: [
+          { name: 'lawyer', label: 'Lawyer', type: 'job' }
+        ],
         money: 12000,
         bankMoney: 350000,
         lastPlayed: new Date('2026-02-27'),
@@ -144,7 +160,7 @@ export const mockPlayers: Player[] = [
         name: 'Random Name',
         playerId: 'p4',
         identifier: 'char:p4c1',
-        job: 'unemployed',
+        groups: [], // Unemployed / No groups
         money: 500,
         bankMoney: 1000,
         lastPlayed: new Date('2026-01-15'),
@@ -197,6 +213,7 @@ export const mockPlayers: Player[] = [
     licenseId: 'license:e5f6g7h8i9j0',
     isOnline: true,
     isStaff: false,
+    activeCharacter: 'c7',
     firstJoined: new Date('2024-06-12'),
     lastSeen: new Date(),
     characters: [
@@ -205,7 +222,9 @@ export const mockPlayers: Player[] = [
         name: 'Mike Johnson',
         playerId: 'p5',
         identifier: 'char:p5c1',
-        job: 'taxi',
+        groups: [
+          { name: 'taxi', label: 'Downtown Cab Co', type: 'job' }
+        ],
         money: 1800,
         bankMoney: 32000,
         lastPlayed: new Date(),
@@ -223,6 +242,7 @@ export const mockPlayers: Player[] = [
     licenseId: 'license:e5f6g7h8i9j0',
     isOnline: true,
     isStaff: false,
+    activeCharacter: 'c8',
     firstJoined: new Date('2020-06-12'),
     lastSeen: new Date(),
     characters: [
@@ -231,7 +251,7 @@ export const mockPlayers: Player[] = [
         name: 'Some Random Dev',
         playerId: 'p6',
         identifier: 'char:p6c1',
-        job: 'unemployed',
+        groups: [],
         money: 2000,
         bankMoney: 32000,
         lastPlayed: new Date(),
