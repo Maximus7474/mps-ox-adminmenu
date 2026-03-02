@@ -1,8 +1,7 @@
 export interface Character {
-  id: string;
+  id: number;
   name: string;
-  playerId: string;
-  identifier: string;
+  stateId: string;
   activeGroup?: string;
   groups: CharacterGroup[];
   money: number;
@@ -18,12 +17,12 @@ export interface CharacterGroup {
 }
 
 export interface Player {
-  id: string;
+  id: number;
   name: string;
   steamId: string;
   discordId?: string;
   licenseId: string;
-  activeCharacter?: string;
+  activeCharacter?: number;
   characters: Character[];
   isOnline: boolean;
   isStaff: boolean;
