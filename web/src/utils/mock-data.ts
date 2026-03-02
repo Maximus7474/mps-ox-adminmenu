@@ -230,7 +230,6 @@ export const mockGroups: Group[] = [
     label: 'Ballas Gang',
     description: 'Street gang operating in Grove Street area',
     memberCount: 12,
-    bankAccount: 45000,
     leader: 'Johnny Dark',
     createdAt: new Date('2024-01-01'),
     grades: [
@@ -313,7 +312,6 @@ export const mockGroups: Group[] = [
     label: 'Los Santos Vagos',
     description: 'Street gang controlling the south side',
     memberCount: 10,
-    bankAccount: 12000,
     createdAt: new Date('2024-01-01'),
     grades: [
       { label: 'Pequeno', accountRole: 'none' },
