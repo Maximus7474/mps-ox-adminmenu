@@ -254,6 +254,13 @@ export const mockGroups: Group[] = [
     memberCount: 8,
     leader: 'John Smith',
     createdAt: new Date('2024-01-01'),
+    grades: [
+      { label: 'Cadet', accountRole: 'none' },
+      { label: 'Officer', accountRole: 'viewer' },
+      { label: 'Sergeant', accountRole: 'contributor' },
+      { label: 'Lieutenant', accountRole: 'manager' },
+      { label: 'Chief', accountRole: 'owner' },
+    ],
     members: [
       {
         characterId: 'c1',
@@ -274,6 +281,13 @@ export const mockGroups: Group[] = [
     memberCount: 12,
     leader: 'Johnny Dark',
     createdAt: new Date('2024-01-01'),
+    grades: [
+      { label: 'Recruit', accountRole: 'none' },
+      { label: 'Soldier', accountRole: 'viewer' },
+      { label: 'Enforcer', accountRole: 'contributor' },
+      { label: 'Underboss', accountRole: 'manager' },
+      { label: 'Boss', accountRole: 'owner' },
+    ],
     members: [
       {
         characterId: 'c2',
@@ -294,6 +308,13 @@ export const mockGroups: Group[] = [
     memberCount: 6,
     leader: 'Sarah Connor',
     createdAt: new Date('2024-01-01'),
+    grades: [
+      { label: 'Trainee', accountRole: 'none' },
+      { label: 'Paramedic', accountRole: 'viewer' },
+      { label: 'Doctor', accountRole: 'contributor' },
+      { label: 'Surgeon', accountRole: 'manager' },
+      { label: 'Chief Medical Officer', accountRole: 'owner' },
+    ],
     members: [
       {
         characterId: 'c4',
@@ -314,6 +335,12 @@ export const mockGroups: Group[] = [
     memberCount: 5,
     leader: 'Alex Rodriguez',
     createdAt: new Date('2024-01-01'),
+    grades: [
+      { label: 'Apprentice', accountRole: 'none' },
+      { label: 'Mechanic', accountRole: 'viewer' },
+      { label: 'Lead Mechanic', accountRole: 'manager' },
+      { label: 'Shop Owner', accountRole: 'owner' },
+    ],
     members: [
       {
         characterId: 'c3',
@@ -333,6 +360,11 @@ export const mockGroups: Group[] = [
     description: 'Street gang controlling the south side',
     memberCount: 10,
     createdAt: new Date('2024-01-01'),
+    grades: [
+      { label: 'Pequeno', accountRole: 'none' },
+      { label: 'Vago', accountRole: 'viewer' },
+      { label: 'El Jefe', accountRole: 'owner' },
+    ],
     members: [],
   },
   {
@@ -343,6 +375,11 @@ export const mockGroups: Group[] = [
     description: 'Security company specialising in being robbed in armoured vehicles.',
     memberCount: 3,
     createdAt: new Date('2024-01-01'),
+    grades: [
+      { label: 'Guard', accountRole: 'viewer' },
+      { label: 'Driver', accountRole: 'viewer' },
+      { label: 'Security Manager', accountRole: 'owner' },
+    ],
     members: [],
   },
   {
@@ -353,6 +390,12 @@ export const mockGroups: Group[] = [
     description: 'Rescue professionals fighting fires, performing rescues.',
     memberCount: 3,
     createdAt: new Date('2024-01-01'),
+    grades: [
+      { label: 'Probationary', accountRole: 'none' },
+      { label: 'Firefighter', accountRole: 'viewer' },
+      { label: 'Captain', accountRole: 'manager' },
+      { label: 'Fire Chief', accountRole: 'owner' },
+    ],
     members: [],
   },
 ];
