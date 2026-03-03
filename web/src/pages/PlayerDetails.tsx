@@ -130,8 +130,8 @@ export function PlayerDetails() {
         </div>
       </div>
 
-      <Tabs defaultValue='overview' className='w-full'>
-        <TabsList className='grid w-full grid-cols-4 mb-2'>
+      <Tabs defaultValue='overview' className='w-full flex flex-col'>
+        <TabsList className='mb-2 w-full grid grid-cols-4'>
           <TabsTrigger value='overview'>Overview</TabsTrigger>
           <TabsTrigger value='characters'>Characters</TabsTrigger>
           <TabsTrigger value='sanctions'>Sanctions</TabsTrigger>
