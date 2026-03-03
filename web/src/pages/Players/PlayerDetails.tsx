@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { ArrowLeft, Ban, AlertTriangle, FileText, UserX, Shield, Activity } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
+import { Button } from '../../components/ui/button';
+import { Badge } from '../../components/ui/badge';
 import {
   Dialog,
   DialogContent,
@@ -11,16 +11,16 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '../components/ui/dialog';
-import { Label } from '../components/ui/label';
-import { Textarea } from '../components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { Switch } from '../components/ui/switch';
-import { Input } from '../components/ui/input';
-import { mockPlayers } from '../utils/mock-data';
-import { Player } from '../types';
-import { ScrollArea } from '../components/ui/scroll-area';
+} from '../../components/ui/dialog';
+import { Label } from '../../components/ui/label';
+import { Textarea } from '../../components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
+import { Switch } from '../../components/ui/switch';
+import { Input } from '../../components/ui/input';
+import { mockPlayers } from '../../utils/mock-data';
+import { Ban as BanType, Player } from '../../types';
+import { ScrollArea } from '../../components/ui/scroll-area';
 
 export function PlayerDetails() {
   const { userId } = useParams();
@@ -67,8 +67,8 @@ export function PlayerDetails() {
         ? undefined
         : new Date(Date.now() + parseInt(banForm.duration) * 24 * 60 * 60 * 1000),
       isPermanent: banForm.isPermanent,
-      isActive: true,
-    };
+      revoked: false,
+    } satisfies BanType;
 
     setPlayer({ ...player, bans: [...player.bans, newBan] });
     setIsBanDialogOpen(false);
@@ -197,14 +197,14 @@ export function PlayerDetails() {
               </Card>
             </div>
 
-            {player.bans.filter((b) => b.isActive).length > 0 && (
+            {player.bans.filter((b) => !b.revoked).length > 0 && (
               <Card className='border-destructive'>
                 <CardHeader>
                   <CardTitle className='text-destructive'>Active Bans</CardTitle>
                 </CardHeader>
                 <CardContent>
                   {player.bans
-                    .filter((b) => b.isActive)
+                    .filter((b) => !b.revoked)
                     .map((ban) => (
                       <div key={ban.id} className='space-y-1 border-b pb-3 last:border-b-0'>
                         <div className='flex items-center justify-between'>

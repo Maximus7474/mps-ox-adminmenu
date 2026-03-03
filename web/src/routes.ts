@@ -1,11 +1,7 @@
 import { createHashRouter } from 'react-router';
 import { AdminLayout } from './layouts/AdminLayout';
-import { Dashboard } from './pages/Dashboard';
-import { Groups } from './pages/Groups';
-import { GroupDetails } from './pages/GroupDetails';
-import { Players } from './pages/Players';
-import { PlayerDetails } from './pages/PlayerDetails';
-import { GroupForm } from './pages/GroupForm';
+import { Dashboard, GroupForm, Groups, PlayerDetails, Players } from './pages';
+import { GroupDetails } from './pages/Groups/GroupDetails';
 
 export const router = createHashRouter([
   {

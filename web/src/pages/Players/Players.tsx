@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Search, Ban, AlertTriangle, Shield, ChevronRight } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
-import { Input } from '../components/ui/input';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table';
-import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { mockPlayers } from '../utils/mock-data';
-import { ScrollArea } from '../components/ui/scroll-area';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
+import { Button } from '../../components/ui/button';
+import { Badge } from '../../components/ui/badge';
+import { Input } from '../../components/ui/input';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table';
+import { Tabs, TabsList, TabsTrigger } from '../../components/ui/tabs';
+import { mockPlayers } from '../../utils/mock-data';
+import { ScrollArea } from '../../components/ui/scroll-area';
 
 export function Players() {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export function Players() {
 
     if (activeTab === 'online') return matchesSearch && player.isOnline;
     if (activeTab === 'staff') return matchesSearch && player.isStaff;
-    if (activeTab === 'banned') return matchesSearch && player.bans.some((b) => b.isActive);
+    if (activeTab === 'banned') return matchesSearch && player.bans.some((b) => !b.revoked);
     return matchesSearch;
   });
 
@@ -104,7 +104,7 @@ export function Players() {
                             Online
                           </Badge>
                         )}
-                        {player.bans.some((b) => b.isActive) && (
+                        {player.bans.some((b) => !b.revoked) && (
                           <Badge variant='destructive' className='w-fit'>
                             <Ban className='mr-1 size-3' />
                             Banned
