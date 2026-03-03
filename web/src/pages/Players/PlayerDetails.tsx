@@ -182,7 +182,12 @@ export function PlayerDetails() {
                   <CardTitle>Quick Actions</CardTitle>
                 </CardHeader>
                 <CardContent className='space-y-2'>
-                  <Button className='w-full' variant='destructive' onClick={() => setIsBanDialogOpen(true)}>
+                  <Button
+                    className='w-full'
+                    variant='destructive'
+                    onClick={() => setIsBanDialogOpen(true)}
+                    disabled={player.bans.some((ban) => ban.isPermanent && !ban.revoked)}
+                  >
                     <Ban className='mr-2 size-4' />
                     Ban Player
                   </Button>
@@ -198,32 +203,7 @@ export function PlayerDetails() {
               </Card>
             </div>
 
-            {player.bans.filter((b) => !b.revoked).length > 0 && (
-              <Card className='border-destructive'>
-                <CardHeader>
-                  <CardTitle className='text-destructive'>Active Bans</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {player.bans
-                    .filter((b) => !b.revoked)
-                    .map((ban) => (
-                      <div key={ban.id} className='space-y-1 border-b pb-3 last:border-b-0'>
-                        <div className='flex items-center justify-between'>
-                          <span>{ban.isPermanent ? 'Permanent Ban' : 'Temporary Ban'}</span>
-                          <Badge variant='destructive'>Active</Badge>
-                        </div>
-                        <p className='text-sm'>{ban.reason}</p>
-                        <p className='text-sm text-muted-foreground'>
-                          By {ban.bannedBy} on {ban.bannedAt.toLocaleDateString()}
-                        </p>
-                        {ban.expiresAt && (
-                          <p className='text-sm text-muted-foreground'>Expires: {ban.expiresAt.toLocaleDateString()}</p>
-                        )}
-                      </div>
-                    ))}
-                </CardContent>
-              </Card>
-            )}
+            {player.bans.length > 0 && <BanSection bans={player.bans} />}
           </TabsContent>
 
           <TabsContent value='characters' className='space-y-4'>
