@@ -21,6 +21,7 @@ import { Input } from '../../components/ui/input';
 import { mockPlayers } from '../../utils/mock-data';
 import { Ban as BanType, Player } from '../../types';
 import { ScrollArea } from '../../components/ui/scroll-area';
+import BanSection from './components/BanSection';
 
 export function PlayerDetails() {
   const { userId } = useParams();
