@@ -166,11 +166,21 @@ export const mockPlayers: Player[] = [
       {
         id: 'b1',
         userId: 4,
+        reason: 'toxicity, fail RP',
+        bannedBy: 'AdminSteve',
+        bannedAt: new Date('2026-01-10'),
+        expiresAt: new Date('2026-01-11'),
+        isPermanent: false,
+        revoked: false,
+      },
+      {
+        id: 'b2',
+        userId: 4,
         reason: 'Repeated RDM, toxicity, fail RP',
         bannedBy: 'AdminSteve',
         bannedAt: new Date('2026-01-15'),
         isPermanent: true,
-        isActive: true,
+        revoked: false,
       },
     ],
     sanctions: [

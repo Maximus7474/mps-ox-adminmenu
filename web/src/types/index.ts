@@ -77,7 +77,7 @@ export interface Ban {
   bannedAt: Date;
   expiresAt?: Date;
   isPermanent: boolean;
-  isActive: boolean;
+  revoked: boolean;
 }
 
 export interface Sanction {
