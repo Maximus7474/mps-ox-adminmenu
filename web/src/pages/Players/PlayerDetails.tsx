@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { ArrowLeft, Ban, AlertTriangle, FileText, UserX, Shield, Activity } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
+import { ArrowLeft, Ban, AlertTriangle, FileText, Shield } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
 import {
@@ -22,6 +22,7 @@ import { mockPlayers } from '../../utils/mock-data';
 import { Ban as BanType, Player } from '../../types';
 import { ScrollArea } from '../../components/ui/scroll-area';
 import BanSection from './components/BanSection';
+import CharacterCard from './components/CharacterDisplay';
 
 export function PlayerDetails() {
   const { userId } = useParams();
@@ -209,91 +210,7 @@ export function PlayerDetails() {
           <TabsContent value='characters' className='space-y-4'>
             <div className='grid gap-4'>
               {player.characters.map((char) => (
-                <Card key={char.id} className={char.disabled ? 'opacity-80' : ''}>
-                  <CardHeader className='pb-3'>
-                    <div className='flex items-center justify-between'>
-                      <CardTitle>{char.name}</CardTitle>
-                      <div className='flex items-center gap-4'>
-                        <div className='flex items-center gap-2'>
-                          <Label htmlFor={`char-${char.id}`} className='text-xs cursor-pointer'>
-                            Disabled
-                          </Label>
-                          <Switch
-                            id={`char-${char.id}`}
-                            checked={char.disabled}
-                            onCheckedChange={() => handleToggleCharacter(char.id)}
-                          />
-                        </div>
-                        {char.disabled && (
-                          <Badge variant='destructive'>
-                            <UserX className='mr-1 size-3' />
-                            Disabled
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                    <CardDescription className='font-mono text-xs'>{char.stateId}</CardDescription>
-                  </CardHeader>
-
-                  <CardContent className='grid gap-6 text-sm'>
-                    <div className='space-y-3'>
-                      <div className='flex items-center gap-2 border-b pb-2'>
-                        <Shield className='size-4 text-muted-foreground' />
-                        <span className='text-xs font-bold uppercase tracking-wider text-muted-foreground'>
-                          Group Affiliations
-                        </span>
-                      </div>
-
-                      <div className='grid gap-2 sm:grid-cols-2'>
-                        {char.groups.length > 0 ? (
-                          char.groups.map((group) => (
-                            <div
-                              key={group.name}
-                              className='flex justify-between items-center bg-muted/30 p-2 rounded-md border border-dashed'
-                            >
-                              <span className='text-xs text-muted-foreground capitalize font-medium'>{group.type}</span>
-                              <Badge
-                                variant={group.type === 'job' ? 'outline' : 'destructive'}
-                                className='ml-2 font-semibold'
-                              >
-                                {group.label}
-                              </Badge>
-                            </div>
-                          ))
-                        ) : (
-                          <div className='py-2 text-muted-foreground italic'>No active group memberships</div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className='space-y-3'>
-                      <div className='flex items-center gap-2 border-b pb-2'>
-                        <Activity className='size-4 text-muted-foreground' />
-                        <span className='text-xs font-bold uppercase tracking-wider text-muted-foreground'>
-                          Financials & Activity
-                        </span>
-                      </div>
-
-                      <div className='grid gap-2 sm:grid-cols-2'>
-                        <div className='flex justify-between'>
-                          <span className='text-muted-foreground'>Cash Balance:</span>
-                          <span className='font-mono font-bold text-green-600 dark:text-green-400'>
-                            ${char.money.toLocaleString()}
-                          </span>
-                        </div>
-                        <div className='flex justify-between'>
-                          <span className='text-muted-foreground'>Bank Balance:</span>
-                          <span className='font-mono font-bold text-blue-600 dark:text-blue-400'>
-                            ${char.bankMoney.toLocaleString()}
-                          </span>
-                        </div>
-                        <div className='flex justify-between sm:col-span-2 mt-1 text-xs text-muted-foreground italic'>
-                          <span>Last session: {char.lastPlayed.toLocaleDateString()}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                <CharacterCard character={char} toggleDisabled={handleToggleCharacter} />
               ))}
             </div>
           </TabsContent>
