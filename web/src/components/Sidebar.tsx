@@ -30,8 +30,8 @@ export function AppSidebar() {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size='lg' asChild>
-              <div className='flex items-center gap-2 cursor-pointer'>
+            <SidebarMenuButton size='lg' className='hover:bg-transparent active:bg-transparent cursor-default'>
+              <div className='flex items-center gap-2'>
                 <div className='flex aspect-square size-8 items-center justify-center rounded-md'>
                   <img
                     src='/coxdev.webp'
@@ -41,7 +41,7 @@ export function AppSidebar() {
                 </div>
 
                 <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-semibold'>Ox Admin</span>
+                  <span className='truncate font-semibold'>Mox Admin</span>
                   <span className='truncate text-xs text-muted-foreground/80'>v{version}</span>
                 </div>
               </div>
