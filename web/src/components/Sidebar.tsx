@@ -1,3 +1,4 @@
+import { version } from '../../../package.json';
 import { Link, useLocation } from 'react-router';
 import { LayoutDashboard, Users, UserCog, Sun, Moon } from 'lucide-react';
 import {
@@ -41,7 +42,7 @@ export function AppSidebar() {
 
                 <div className='grid flex-1 text-left text-sm leading-tight'>
                   <span className='truncate font-semibold'>Ox Admin</span>
-                  <span className='truncate text-xs text-muted-foreground/80'>v0.0.0</span>
+                  <span className='truncate text-xs text-muted-foreground/80'>v{version}</span>
                 </div>
               </div>
             </SidebarMenuButton>
