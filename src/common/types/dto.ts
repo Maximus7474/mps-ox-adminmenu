@@ -19,7 +19,7 @@ export interface CharacterGroup {
 export interface Player {
   id: number;
   name: string;
-  steamId: string;
+  steamId?: string;
   discordId?: string;
   licenseId: string;
   activeCharacter?: number;
@@ -87,4 +87,25 @@ export interface Sanction {
   reason: string;
   issuedBy: string;
   issuedAt: Date;
+}
+
+export interface BasePlayer {
+  source: string;
+  username: string;
+  userId: number;
+  activeCharacter?: BaseCharacter;
+  isStaff: boolean;
+}
+
+export interface BaseCharacter {
+  charId: number;
+  stateId: string;
+  name: string;
+  groups: string[];
+}
+
+export interface DashboardData {
+  playerCount: { total: number; online: number };
+  staffCount: { total: number; online: number };
+  playerlist: BasePlayer[];
 }
