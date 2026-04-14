@@ -1,4 +1,4 @@
-import { Player, Group } from '../types';
+import { Player, Group } from '@common/types';
 
 export const mockPlayers: Player[] = [
   {

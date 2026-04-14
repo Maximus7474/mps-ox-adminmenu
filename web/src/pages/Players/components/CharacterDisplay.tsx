@@ -1,5 +1,5 @@
 import { Activity, Shield, X } from 'lucide-react';
-import { Character } from '../../../types';
+import { Character } from '@common/types';
 import { Badge } from '../../../components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card';
 import { Label } from '../../../components/ui/label';

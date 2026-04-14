@@ -1,7 +1,7 @@
 import { BanIcon, Gavel, History } from 'lucide-react';
 import { Badge } from '../../../components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
-import { Ban } from '../../../types';
+import { Ban } from '@common/types';
 
 export default function BanSection({ bans }: { bans: Ban[] }) {
   const now = new Date();

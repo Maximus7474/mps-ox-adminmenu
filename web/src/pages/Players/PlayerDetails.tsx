@@ -19,7 +19,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/ta
 import { Switch } from '../../components/ui/switch';
 import { Input } from '../../components/ui/input';
 import { mockPlayers } from '../../utils/mock-data';
-import { Ban as BanType, Player } from '../../types';
+import { Ban as BanType, Player } from '@common/types';
 import { ScrollArea } from '../../components/ui/scroll-area';
 import BanSection from './components/BanSection';
 import CharacterCard from './components/CharacterDisplay';
