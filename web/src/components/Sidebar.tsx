@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router';
-import { LayoutDashboard, Users, UserCog, Settings, Sun, Moon } from 'lucide-react';
+import { LayoutDashboard, Users, UserCog, Sun, Moon } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -30,13 +30,18 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size='lg' asChild>
-              <div className='cursor-pointer'>
-                <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground'>
-                  <Settings className='size-4' />
+              <div className='flex items-center gap-2 cursor-pointer'>
+                <div className='flex aspect-square size-8 items-center justify-center rounded-md'>
+                  <img
+                    src='/coxdev.webp'
+                    alt='Cox Developer Image'
+                    className='size-full object-contain filter dark:brightness-110'
+                  />
                 </div>
+
                 <div className='grid flex-1 text-left text-sm leading-tight'>
                   <span className='truncate font-semibold'>Ox Admin</span>
-                  <span className='truncate text-xs text-muted-foreground'>v0.0.0</span>
+                  <span className='truncate text-xs text-muted-foreground/80'>v0.0.0</span>
                 </div>
               </div>
             </SidebarMenuButton>
