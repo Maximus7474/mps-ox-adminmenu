@@ -98,7 +98,12 @@ export default function BanSection({ bans }: { bans: Ban[] }) {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <BanList bans={revokedBans} statusLabel='Permanent Ban' badgeVariant='destructive' showBadge={(ban) => ban.isPermanent} />
+            <BanList
+              bans={revokedBans}
+              statusLabel='Permanent Ban'
+              badgeVariant='destructive'
+              showBadge={(ban) => ban.isPermanent}
+            />
           </CardContent>
         </Card>
       )}

@@ -5,7 +5,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../..
 import { Label } from '../../../components/ui/label';
 import { Switch } from '../../../components/ui/switch';
 
-export default function CharacterCard({ character, toggleDisabled }: { character: Character, toggleDisabled: (charId: number) => void }) {
+export default function CharacterCard({
+  character,
+  toggleDisabled,
+}: { character: Character; toggleDisabled: (charId: number) => void }) {
   return (
     <div className='grid gap-4'>
       <Card key={character.id} className={character.disabled ? 'opacity-80' : ''}>
@@ -22,10 +25,7 @@ export default function CharacterCard({ character, toggleDisabled }: { character
                   checked={character.disabled}
                   onCheckedChange={() => toggleDisabled(character.id)}
                 />
-                {character.disabled
-                  ? <X color='red' />
-                  : <Activity color='green' />
-                }
+                {character.disabled ? <X color='red' /> : <Activity color='green' />}
               </div>
             </div>
           </div>
@@ -49,10 +49,7 @@ export default function CharacterCard({ character, toggleDisabled }: { character
                     className='flex justify-between items-center bg-muted/30 p-2 rounded-md border border-dashed'
                   >
                     <span className='text-xs text-muted-foreground capitalize font-medium'>{group.type}</span>
-                    <Badge
-                      variant={group.type === 'job' ? 'outline' : 'destructive'}
-                      className='ml-2 font-semibold'
-                    >
+                    <Badge variant={group.type === 'job' ? 'outline' : 'destructive'} className='ml-2 font-semibold'>
                       {group.label}
                     </Badge>
                   </div>
@@ -92,5 +89,5 @@ export default function CharacterCard({ character, toggleDisabled }: { character
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -75,7 +75,6 @@ export function GroupDetails() {
               </CardHeader>
               <CardContent>
                 <div className={`grid items-center py-2 ${group.bankAccount ? 'grid-cols-3' : 'grid-cols-2'}`}>
-                  
                   <div className='text-center'>
                     <div className='flex items-center justify-center gap-2 text-muted-foreground mb-1'>
                       <Users className='size-4' />
@@ -98,9 +97,7 @@ export function GroupDetails() {
                         <Wallet className='size-4' />
                         <span className='text-xs font-semibold uppercase tracking-wider'>Bank</span>
                       </div>
-                      <p className='text-2xl font-bold'>
-                        ${group.bankAccount.toLocaleString()}
-                      </p>
+                      <p className='text-2xl font-bold'>${group.bankAccount.toLocaleString()}</p>
                     </div>
                   )}
                 </div>
